@@ -35,7 +35,11 @@ public class AccountDAO implements Serializable {
             role = acount.getRoleId().getRoleName();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin", e.getMessage());
+            if (e.getMessage().equals("did not retrieve any entities")) {
+                return role;
+            } else {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin "+ e.getMessage());
+            }
             em.getTransaction().rollback();
         } finally {
             em.close();
