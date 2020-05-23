@@ -27,10 +27,9 @@ public class AccountDAO implements Serializable {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a FROM Account a WHERE a.email = :email AND a.password = :password AND a.statusId.statusId = :status ");
+            Query query = em.createQuery("SELECT a FROM Account a WHERE a.email = :email AND a.password = :password ");
             query.setParameter("email", email);
             query.setParameter("password", password);
-            query.setParameter("status", "Activated");
             Account acount = (Account) query.getSingleResult();
             role = acount.getRoleId().getRoleName();
             em.getTransaction().commit();
@@ -46,6 +45,27 @@ public class AccountDAO implements Serializable {
         }
         return role;
     }
+        public String getStatusAccount(String email) {
+        String status = "failed";
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Account acount =  em.find(Account.class, email);
+            status = acount.getStatusId().getStatusId();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (e.getMessage().equals("did not retrieve any entities")) {
+                return status;
+            } else {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin "+ e.getMessage());
+            }
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return status;
+    }
+    
 
     public String getName(String email) {
         String name = "";

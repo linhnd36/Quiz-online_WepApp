@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-body {
+.bg_index {
     min-height: 100vh;
     background-image: linear-gradient(120deg, #3498db, #8e44ad);
 }
@@ -90,7 +90,25 @@ body {
 .error-details {
     color: white;
 }
-.linkBack {
-    
+.bgcolor {
+    background-color: #f2f2f2;
+    height: 950px;
 }
+.box_subject {
+    border: solid 2px #106b03;
+    border-radius: 3%;
+}
+.box_subject:hover {
+    border: solid 1px #c60929;
+}
+.box_subject_title {
+    text-align: center;
+    margin-top: 10px;
+}
+.box_subject_conten {
+    display: block;
+    padding: 10px;
+    opacity: 0.8;
+}
+
 

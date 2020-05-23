@@ -23,6 +23,7 @@ public class LoginController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String STUDENT = "student.jsp";
+    private static final String ADMIN = "admin.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +47,7 @@ public class LoginController extends HttpServlet {
             } else {
                 AccountDAO dao = new AccountDAO();
                 String role = dao.checkLogin(email, password);
+                String statusAccount = dao.getStatusAccount(email);
                 if (role.equals("failed")) {
                     request.setAttribute("ERROR", "Invalid Email or Password!");
                 } else {
@@ -53,7 +55,13 @@ public class LoginController extends HttpServlet {
                     String name = dao.getName(email);
                     session.setAttribute("NAME", name);
                     if (role.equals("Student")) {
-                        url = STUDENT;
+                        if (statusAccount.equals("New")) {
+                            request.setAttribute("ERROR", "Your account has not been activated !");
+                        } else if (statusAccount.equals("Activated")) {
+                            url = STUDENT;
+                        }
+                    } else if (role.equals("Admin")) {
+                        url = ADMIN;
                     } else {
                         request.setAttribute("ERROR", "Your role does not exist!");
                     }

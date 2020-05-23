@@ -18,15 +18,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
-    
-    
+
     private static final String ERROR = "error.jsp";
     private static final String LOGIN = "LoginController";
+    private static final String LOGOUT = "LogOutController";
 //    private static final String SEARCH = "SearchController";
 //    private static final String DELETE = "DeleteController";
 //    private static final String EDIT = "EditController";
 //    private static final String UPDATE = "UpdateController";
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,15 +44,18 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action.equals("Login")) {
                 url = LOGIN;
-            }else{
+            }
+            if (action.equals("Logout")) {
+                url = LOGOUT;
+            } else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }
         } catch (Exception e) {
-            log("Error in MainController"+e.getMessage());
-        }finally{
+            log("Error in MainController :" + e.getMessage());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
