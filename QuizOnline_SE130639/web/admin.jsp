@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +36,7 @@
                             </li>
                         </ul>
                         <div>
-                            <button class="btn btn-outline-secondary" type="submit">
+                            <button class="btn btn-outline-secondary" type="submit" value="Logout" name="action">
                                 Log Out
                             </button>
                         </div>
@@ -45,65 +46,68 @@
             <div class="bgcolor">
                 <div class="container">
                     <h3 class="p-5">Input Question :</h3>
-                    <form>
-                        <div class="form-group">
-                            <label>Question Content:</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                    <div class="form-group">
+                        <label>Question Content:</label>
+                        <textarea class="form-control" rows="3" name="txtQuestionContent"></textarea>
+                    </div>
+                    <label>Answer:</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">A</span>
                         </div>
-                        <label>Answer:</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">A</span>
-                            </div>
-                            <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="txtQuestionAnswerA">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">B</span>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">B</span>
-                            </div>
-                            <input type=" text" class="form-control">
+                        <input type=" text" class="form-control" name="txtQuestionAnswerB">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">C</span>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">C</span>
-                            </div>
-                            <input type=" text" class="form-control">
+                        <input type=" text" class="form-control" name="txtQuestionAnswerC">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">D</span>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">D</span>
-                            </div>
-                            <input type=" text" class="form-control">
+                        <input type=" text" class="form-control" name="txtQuestionAnswerD">
+                    </div>
+                    <div class="form-group">
+                        <label>Subject:</label>
+                        <select class="form-control" name="txtSelectSubject">
+                            <c:set var="ListSubject" value="${requestScope.SUBJECT}"/>
+                            <c:forEach var="subjectDao" items="${ListSubject}">
+                                <option value="${subjectDao.subjectId}">${subjectDao.subjectId}-${subjectDao.subjectName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <label>Select Correct answer:</label><br />
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionA">
+                        <label class="form-check-label">A</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionB">
+                        <label class="form-check-label">B</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionC">
+                        <label class="form-check-label">C</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionD">
+                        <label class="form-check-label">D</label>
+                    </div><br />
+                    <c:set var="inpustSuccess" value="${requestScope.INPUTSUCCESS}" />
+                    <c:if test="${not empty inpustSuccess}">
+                        <div class="alert alert-success">
+                            <strong>${inpustSuccess}</strong> 
                         </div>
-                        <div class="form-group">
-                            <label>Subject:</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <label>Select Correct answer:</label><br />
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
-                            <label class="form-check-label">A</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                            <label class="form-check-label">B</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                            <label class="form-check-label">C</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                            <label class="form-check-label">D</label>
-                        </div><br />
-                        <button type="button" class="btn btn-success mt-3" name="action" value="InpustQuestion">Input Question</button>
-                    </form>
+                    </c:if>
+                    <button type="submit" class="btn btn-success mt-3" name="action" value="InpustQuestion">Input Question</button>                
                 </div>
             </div>
         </form>

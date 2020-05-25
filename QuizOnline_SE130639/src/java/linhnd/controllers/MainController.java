@@ -22,10 +22,8 @@ public class MainController extends HttpServlet {
     private static final String ERROR = "error.jsp";
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogOutController";
-//    private static final String SEARCH = "SearchController";
-//    private static final String DELETE = "DeleteController";
-//    private static final String EDIT = "EditController";
-//    private static final String UPDATE = "UpdateController";
+    private static final String INPUSTQUESTION = "InsertQuestionController";
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,6 +45,8 @@ public class MainController extends HttpServlet {
             }
             if (action.equals("Logout")) {
                 url = LOGOUT;
+            }if (action.equals("InpustQuestion")) {
+                url = INPUSTQUESTION;
             } else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }

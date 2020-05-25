@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String STUDENT = "student.jsp";
-    private static final String ADMIN = "admin.jsp";
+    private static final String ADMIN = "AdminController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,11 +52,13 @@ public class LoginController extends HttpServlet {
                     request.setAttribute("ERROR", "Invalid Email or Password!");
                 } else {
                     HttpSession session = request.getSession();
+                    
                     String name = dao.getName(email);
                     session.setAttribute("NAME", name);
                     if (role.equals("Student")) {
                         if (statusAccount.equals("New")) {
-                            request.setAttribute("ERROR", "Your account has not been activated !");
+                            // chuyển đến trang để xác thực tài khoản
+                            url = STUDENT;
                         } else if (statusAccount.equals("Activated")) {
                             url = STUDENT;
                         }

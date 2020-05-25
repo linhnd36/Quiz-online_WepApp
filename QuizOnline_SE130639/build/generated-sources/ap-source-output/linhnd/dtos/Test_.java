@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import linhnd.dtos.Account;
 import linhnd.dtos.TestQuestions;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-23T13:59:50")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-25T22:44:37")
 @StaticMetamodel(Test.class)
 public class Test_ { 
 
