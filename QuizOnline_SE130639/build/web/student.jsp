@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,12 +15,12 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
               integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
         <link rel="stylesheet" href="css/style.css" />
-        <title>Student</title>
+        <title>Student Page</title>
     </head>
 
     <body class="body">
         <form action="MainController">
-        <header>       
+            <header>       
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a class="navbar-brand" href="#">QuizOnline</a>
                     <div class="collapse navbar-collapse">
@@ -41,57 +42,39 @@
                         </div>
                     </div>
                 </nav>
-        </header>
-        <div class="bgcolor">
-            <div class="container">
-                <h3 class="p-5">Select subjects you want quiz !</h3>
-                <div class="row show_subjects">
-                    <div class="col-md-3 ">
-                        <div class="box_subject">
-                            <h4 class="box_subject_title">Subjects name</h4>
-                            <span class="box_subject_conten">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad quis saepe
-                            </span>
-                            <button type="button" class="btn btn-primary m-2">Learn More</button>
-                        </div>
-                    </div>
-                    <div class="col-md-3 ">
-                        <div class="box_subject">
-                            <h4 class="box_subject_title">Subjects name</h4>
-                            <span class="box_subject_conten">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad quis saepe
-                            </span>
-                            <button type="button" class="btn btn-primary m-2">Learn More</button>
-                        </div>
-                    </div>
-                    <div class="col-md-3 ">
-                        <div class="box_subject">
-                            <h4 class="box_subject_title">Subjects name</h4>
-                            <span class="box_subject_conten">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad quis saepe
-                            </span>
-                            <button type="button" class="btn btn-primary m-2">Learn More</button>
-                        </div>
-                    </div>
-                    <div class="col-md-3 ">
-                        <div class="box_subject">
-                            <h4 class="box_subject_title">Subjects name</h4>
-                            <span class="box_subject_conten">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad quis saepe
-                            </span>
-                            <button type="button" class="btn btn-primary m-2">Learn More</button>
-                        </div>
+            </header>
+            <div class="bgcolor">
+                <div class="container">
+                    <h3 class="p-5">Select subjects you want quiz !</h3>
+                    <div class="row show_subjects">
+                        <c:set var="listSubject" value="${requestScope.LISTSUBJECT}"/>
+                        <c:if test="${not empty listSubject}">
+                            <c:forEach var="subject" items="${listSubject}">
+                                <div class="col-md-3 ">
+                                    <div class="box_subject">
+                                        <h4 class="box_subject_title">${subject.subjectId}</h4>
+                                        <span class="box_subject_conten">${subject.subjectName}
+                                        </span>
+                                        <button type="button" class="btn btn-primary m-2">Start</button>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:if>
+                        
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    </body>
 
 </html>

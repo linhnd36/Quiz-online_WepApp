@@ -8,7 +8,6 @@ package linhnd.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import linhnd.daos.AnswerDAO;
 import linhnd.daos.QuestionDAO;
-import linhnd.dtos.Answer;
 import linhnd.dtos.Question;
 
 /**
@@ -26,8 +24,7 @@ import linhnd.dtos.Question;
 @WebServlet(name = "InsertQuestionController", urlPatterns = {"/InsertQuestionController"})
 public class InsertQuestionController extends HttpServlet {
 
-    private static final String ERRORPAGE = "error.jsp";
-    private static final String ADMINPAGE = "admin.jsp";
+    private static final String ADMINCONTROLLER = "AdminController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +43,10 @@ public class InsertQuestionController extends HttpServlet {
         String questionAnswarB = request.getParameter("txtQuestionAnswerB");
         String questionAnswarC = request.getParameter("txtQuestionAnswerC");
         String questionAnswarD = request.getParameter("txtQuestionAnswerD");
-        String questionCorrect = request.getParameter("txtCorrectAnswer");
+        String correctAnswerAdChoose = request.getParameter("txtCorrectAnswer");
         String subjectId = request.getParameter("txtSelectSubject");
         String correctAnswer = null;
-        String url = ERRORPAGE;
+        String url = ADMINCONTROLLER;
 
         try {
             List<String> listAnswer = new ArrayList<>();
@@ -58,34 +55,47 @@ public class InsertQuestionController extends HttpServlet {
             listAnswer.add(questionAnswarC.trim());
             listAnswer.add(questionAnswarD.trim());
 
-            if (questionCorrect.equals("optionA")) {
-                correctAnswer = questionAnswarA;
-            } else if (questionCorrect.equals("optionB")) {
-                correctAnswer = questionAnswarB;
-            } else if (questionCorrect.equals("optionC")) {
-                correctAnswer = questionAnswarC;
-            } else if (questionCorrect.equals("optionD")) {
-                correctAnswer = questionAnswarD;
-            }
-
-            QuestionDAO dao = new QuestionDAO();
-            //insert new question
-            if (dao.newQuestion(questionContent.trim(), subjectId)) {
-                Question question = dao.getQuestionId();
-                AnswerDAO daoAnswer = new AnswerDAO();
-                // insert list answer of the question
-                if (daoAnswer.newAnswer(listAnswer, question.getQuestionId())) {
-                    int correctAnswerId = daoAnswer.getAnswerId(correctAnswer, question.getQuestionId());
-                    if (correctAnswerId > 0) {
-                        //update correct answer of the question
-                        if (dao.updateCorrecAnswerForQuestion(question.getQuestionId(), String.valueOf(correctAnswerId))) {
-                            url = ADMINPAGE;
-                            request.setAttribute("INPUTSUCCESS", "Input Successfull !");
-                        } else {
-                            request.setAttribute("ERROR", "Inpust question Error !");
+            if (questionContent.trim().equals("")) {
+                request.setAttribute("ERRORINPUT", "Question Content can't blank !");
+            } else {
+                if (correctAnswerAdChoose == null) {
+                    request.setAttribute("ERRORINPUT", "Pls choose Correct answer !");
+                } else {
+                    switch (correctAnswerAdChoose) {
+                        case "optionA":
+                            correctAnswer = questionAnswarA;
+                            break;
+                        case "optionB":
+                            correctAnswer = questionAnswarB;
+                            break;
+                        case "optionC":
+                            correctAnswer = questionAnswarC;
+                            break;
+                        case "optionD":
+                            correctAnswer = questionAnswarD;
+                            break;
+                        default:
+                            break;
+                    }
+                    QuestionDAO dao = new QuestionDAO();
+                    //insert new question
+                    if (dao.newQuestion(questionContent.trim(), subjectId)) {
+                        Question question = dao.getQuestionId();
+                        AnswerDAO daoAnswer = new AnswerDAO();
+                        // insert list answer of the question
+                        if (daoAnswer.newAnswer(listAnswer, question.getQuestionId())) {
+                            int correctAnswerId = daoAnswer.getAnswerId(correctAnswer, question.getQuestionId());
+                            if (correctAnswerId > 0) {
+                                //update correct answer of the question
+                                if (dao.updateCorrecAnswerForQuestion(question.getQuestionId(), String.valueOf(correctAnswerId))) {
+                                    request.setAttribute("INPUTSUCCESS", "Input Successfull !");
+                                } else {
+                                    request.setAttribute("ERRORINPUT", "Inpust question Error !");
+                                }
+                            } else {
+                                request.setAttribute("ERRORINPUT", "Inpust question Error !");
+                            }
                         }
-                    } else {
-                        request.setAttribute("ERROR", "Inpust question Error !");
                     }
                 }
             }

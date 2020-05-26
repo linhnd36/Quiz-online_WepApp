@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 public class LogOutController extends HttpServlet {
 
     private final static String ERROR = "error.jsp";
-    private final static String SUCESS = "index.jsp";
+    private final static String SUCESS = "login.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

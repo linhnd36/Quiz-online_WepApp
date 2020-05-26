@@ -22,7 +22,7 @@ import linhnd.dtos.Subject;
  */
 @WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
 public class AdminController extends HttpServlet {
-    private static final String ADMINPAGE = "admin.jsp";
+    private static final String ADMINPAGE = "adminInsertPage.jsp";
     private static final String ERRORPAGE = "error.jsp";
 
     /**

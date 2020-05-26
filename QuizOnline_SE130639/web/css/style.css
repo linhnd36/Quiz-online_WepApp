@@ -12,9 +12,9 @@
 }
 
 .login-form {
-    width: 360px;
+    width: 400px;
     background: #f1f1f1;
-    height: 580px;
+    height: 700px;
     padding: 80px 40px;
     border-radius: 10px;
     position: absolute;
@@ -25,7 +25,7 @@
 
 .login-form h1, h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .txtb {

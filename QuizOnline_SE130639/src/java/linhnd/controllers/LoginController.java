@@ -21,8 +21,8 @@ import linhnd.daos.AccountDAO;
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String STUDENT = "student.jsp";
+    private static final String ERROR = "login.jsp";
+    private static final String STUDENT = "StudentController";
     private static final String ADMIN = "AdminController";
 
     /**
@@ -43,29 +43,27 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("txtPassword");
 
             if (email.equals("") || password.equals("")) {
-                request.setAttribute("ERROR", "Email and Password can't blank");
+                request.setAttribute("ERRORLOGIN", "Email and Password can't blank");
             } else {
                 AccountDAO dao = new AccountDAO();
                 String role = dao.checkLogin(email, password);
                 String statusAccount = dao.getStatusAccount(email);
                 if (role.equals("failed")) {
-                    request.setAttribute("ERROR", "Invalid Email or Password!");
+                    request.setAttribute("ERRORLOGIN", "Account not found !");
                 } else {
                     HttpSession session = request.getSession();
-                    
                     String name = dao.getName(email);
                     session.setAttribute("NAME", name);
                     if (role.equals("Student")) {
                         if (statusAccount.equals("New")) {
-                            // chuyển đến trang để xác thực tài khoản
-                            url = STUDENT;
+                            request.setAttribute("ERRORLOGIN", "Account not found !");
                         } else if (statusAccount.equals("Activated")) {
                             url = STUDENT;
                         }
                     } else if (role.equals("Admin")) {
                         url = ADMIN;
                     } else {
-                        request.setAttribute("ERROR", "Your role does not exist!");
+                        request.setAttribute("ERRORLOGIN", "Account not found !");
                     }
                 }
             }

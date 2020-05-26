@@ -27,7 +27,7 @@
                             ERROR PAGE</h2>
                         <div class="error-details">
                             <%= error%> <br/>
-                            <a style="color: white" href="index.jsp">Back to Login Page</a>  
+                            <a style="color: white" href="login.jsp">Back to Login Page</a>  
                         </div>                       
                     </div>                
                 </div>
