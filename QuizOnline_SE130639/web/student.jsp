@@ -32,7 +32,7 @@
                                 <a class="nav-link" href="#">History</a>
                             </li>
                             <li class="nav-item ml-5">
-                                <span class="text-danger">Welcome, ${sessionScope.NAME}</span>
+                                <span class="text-danger">Welcome ${sessionScope.NAME}</span>
                             </li>
                         </ul>
                         <div>

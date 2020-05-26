@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import linhnd.daos.AccountDAO;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -46,7 +47,8 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("ERRORLOGIN", "Email and Password can't blank");
             } else {
                 AccountDAO dao = new AccountDAO();
-                String role = dao.checkLogin(email, password);
+                String passwordSha256 = DigestUtils.sha256Hex(password);
+                String role = dao.checkLogin(email, passwordSha256);
                 String statusAccount = dao.getStatusAccount(email);
                 if (role.equals("failed")) {
                     request.setAttribute("ERRORLOGIN", "Account not found !");

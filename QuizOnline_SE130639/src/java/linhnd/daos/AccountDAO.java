@@ -13,6 +13,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import linhnd.dtos.Account;
+import linhnd.dtos.Role;
+import linhnd.dtos.Status;
 
 /**
  *
@@ -37,7 +39,7 @@ public class AccountDAO implements Serializable {
             if (e.getMessage().equals("did not retrieve any entities")) {
                 return role;
             } else {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin "+ e.getMessage());
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin " + e.getMessage());
             }
             em.getTransaction().rollback();
         } finally {
@@ -45,19 +47,20 @@ public class AccountDAO implements Serializable {
         }
         return role;
     }
-        public String getStatusAccount(String email) {
+
+    public String getStatusAccount(String email) {
         String status = "failed";
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Account acount =  em.find(Account.class, email);
+            Account acount = em.find(Account.class, email);
             status = acount.getStatusId().getStatusId();
             em.getTransaction().commit();
         } catch (Exception e) {
             if (e.getMessage().equals("did not retrieve any entities")) {
                 return status;
             } else {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin "+ e.getMessage());
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin " + e.getMessage());
             }
             em.getTransaction().rollback();
         } finally {
@@ -65,7 +68,6 @@ public class AccountDAO implements Serializable {
         }
         return status;
     }
-    
 
     public String getName(String email) {
         String name = "";
@@ -82,6 +84,49 @@ public class AccountDAO implements Serializable {
             em.close();
         }
         return name;
+    }
+
+    public boolean checkEmailAvailability(String email) {
+        boolean check = false;
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.find(Account.class, email);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (e.getMessage().equals("did not retrieve any entities")) {
+                check = true;
+            } else {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkEmailAvailability", e.getMessage());
+            }
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return check;
+    }
+
+    public boolean createNewAccount(String email, String name, String password) {
+        boolean check = false;
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Account account = new Account();
+            account.setEmail(email);
+            account.setName(name);
+            account.setPassword(password);
+            account.setStatusId(em.find(Status.class, "New"));
+            account.setRoleId(em.find(Role.class, "Student"));
+            em.persist(account);
+            em.getTransaction().commit();
+            check = true;
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function createNewAccount", e.getMessage());
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return check;
     }
 
 }

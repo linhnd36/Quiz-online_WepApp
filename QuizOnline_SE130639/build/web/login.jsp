@@ -19,6 +19,12 @@
             <form action="MainController" method="POST" class="login-form">
                 <h1>Quiz Online</h1>
                 <h2>Login</h2>
+                <c:set var="createAccount" value="${requestScope.CREATESUCESS}"/>
+                <c:if test="${not empty createAccount}">
+                    <div class="alert alert-success" role="alert">
+                        ${createAccount}
+                    </div>
+                </c:if>
                 <div class="txtb">
                     <h5>Email:</h5>
                     <input type="email" name="txtEmail" value="" />
@@ -30,7 +36,7 @@
                 <c:set var="error" value="${requestScope.ERRORLOGIN}"/>
                 <c:if test="${not empty error}" >
                     <div class="alert alert-danger" role="alert">
-                       ${error}
+                        ${error}
                     </div>
                 </c:if>
                 <input type="submit" class="logbtn" value="Login" name="action" />

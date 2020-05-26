@@ -17,26 +17,42 @@
     <body class="bg_index">
         <div class="container">
             <form action="MainController" method="POST" class="login-form" style="height: 800px">
+                <c:set var="error" value="${requestScope.CREATEERROR}"/>
                 <h1 style="margin-top: -50px">Quiz Online</h1>
                 <h2>Sign Up</h2>
                 <div class="txtb">
                     <h5>Email:</h5>
-                    <input type="email" name="txtEmail" value="" />
+                    <input type="email" name="txtEmail" value="" />             
                 </div>
+                <c:if test="${not empty error.emailIsExited}" >
+                    <div class="alert alert-danger" role="alert">
+                        ${error.emailIsExited}
+                    </div>
+                </c:if>
                 <div class="txtb">
                     <h5>Name:</h5>
                     <input type="text" name="txtName" value="" />
                 </div>
                 <div class="txtb">
                     <h5>Password:</h5>
-                    <input type="password" name="txtPassword" value="" />
+                    <input type="password" name="txtPassword" value="" />          
                 </div>
+                <c:if test="${not empty error.passwordLeghtError}" >
+                    <div class="alert alert-danger" role="alert">
+                        ${error.passwordLeghtError}
+                    </div>
+                </c:if>
                 <div class="txtb">
                     <h5>Confirm Password:</h5>
                     <input type="password" name="txtConfirmPassword" value="" />
                 </div>
+                <c:if test="${not empty error.confirmNoMatched}" >
+                    <div class="alert alert-danger" role="alert">
+                        ${error.confirmNoMatched}
+                    </div>
+                </c:if>
                 <input type="submit" class="logbtn" value="Registration" name="action" />
-                <div class="bottom-text">Back to Login <a href="signUp.jsp">Back</a></div>
+                <div class="bottom-text"><a href="login.jsp">Back to Login</a></div>
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

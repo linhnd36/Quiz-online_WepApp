@@ -100,4 +100,21 @@ public class QuestionDAO implements Serializable {
         return check;
     }
 
+    public List<Question> getListQuestionSearch(String txtSearch) {
+        EntityManager em = emf.createEntityManager();
+        List<Question> listQuestionSearch = null;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("");
+            listQuestionSearch = query.setMaxResults(20).getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return listQuestionSearch;
+    }
+
 }

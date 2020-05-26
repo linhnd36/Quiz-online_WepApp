@@ -45,7 +45,15 @@
             </header>
             <div class="bgcolor">
                 <div class="container">
-                    <h1>Search Page</h1>               
+                    <h1 class="p-5">Search Page</h1> 
+                    <form class="example" action="MainController">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="txtSearchQuestion" placeholder="Search Question">
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit" value="Search" name="action">Search</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </form>

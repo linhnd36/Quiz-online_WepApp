@@ -6,12 +6,14 @@
 package linhnd.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import linhnd.daos.AccountDAO;
+import linhnd.dtos.AccountCrearteError;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -21,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationController extends HttpServlet {
 
     private static final String LOGINPAGE = "login.jsp";
-    private static final String ERROR = "logib.jsp";
+    private static final String SIGNUPPAGE = "signUp.jsp";
+    private static final String ERRORPAGE = "error.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,13 +38,41 @@ public class RegistrationController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = SIGNUPPAGE;
+        boolean foundErr = false;
         try {
             String email = request.getParameter("txtEmail");
             String name = request.getParameter("txtName");
             String password = request.getParameter("txtPassword");
             String passwordConfirm = request.getParameter("txtConfirmPassword");
 
+            AccountCrearteError error = new AccountCrearteError();
+            AccountDAO dao = new AccountDAO();
+
+            if (dao.checkEmailAvailability(email.trim())) {
+                foundErr = true;
+                error.setEmailIsExited("Email is Exited");
+            }
+            if (password.trim().length() < 6 || password.trim().length() > 20) {
+                foundErr = true;
+                error.setPasswordLeghtError("Password string rerequired 6 to 20");
+            }
+            if (!password.trim().equals(passwordConfirm.trim())) {
+                foundErr = true;
+                error.setConfirmNoMatched("Confirm not matched");
+            }
+            if (foundErr) {
+                request.setAttribute("CREATEERROR", error);
+            } else {
+                String passwordSha256 = DigestUtils.sha256Hex(password);
+                if (dao.createNewAccount(email, name, passwordSha256)) {
+                    request.setAttribute("CREATESUCESS", "Create account sucess, pls Login");
+                    url = LOGINPAGE;
+                } else {
+                    request.setAttribute("ERROR", "Create account error");
+                    url = ERRORPAGE;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

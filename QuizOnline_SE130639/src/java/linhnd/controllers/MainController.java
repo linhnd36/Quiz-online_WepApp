@@ -23,7 +23,8 @@ public class MainController extends HttpServlet {
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogOutController";
     private static final String INPUSTQUESTION = "InsertQuestionController";
-    private static final String RegistrationController = "RegistrationController";
+    private static final String REGISTRATION = "RegistrationController";
+    private static final String SEARCHQUESTION = "SearchQuestionController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,8 +51,10 @@ public class MainController extends HttpServlet {
                 url = INPUSTQUESTION;
             }
             if (action.equals("Registration")) {
-                url = RegistrationController;
-            } else {
+                url = REGISTRATION;
+            }if (action.equals("Search")) {
+                url = SEARCHQUESTION;
+            }else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }
         } catch (Exception e) {

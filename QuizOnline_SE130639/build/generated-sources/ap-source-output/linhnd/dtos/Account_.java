@@ -8,7 +8,7 @@ import linhnd.dtos.Role;
 import linhnd.dtos.Status;
 import linhnd.dtos.Test;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-26T14:13:56")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-26T22:20:51")
 @StaticMetamodel(Account.class)
 public class Account_ { 
 
