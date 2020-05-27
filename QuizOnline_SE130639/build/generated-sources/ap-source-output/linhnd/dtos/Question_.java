@@ -10,7 +10,7 @@ import linhnd.dtos.Status;
 import linhnd.dtos.Subject;
 import linhnd.dtos.TestQuestions;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-26T22:20:51")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-27T23:51:31")
 @StaticMetamodel(Question.class)
 public class Question_ { 
 

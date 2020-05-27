@@ -6,12 +6,15 @@
 package linhnd.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import linhnd.daos.QuestionDAO;
+import linhnd.dtos.Question;
 
 /**
  *
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SearchQuestionController", urlPatterns = {"/SearchQuestionController"})
 public class SearchQuestionController extends HttpServlet {
 
+    private final static int PAGE_SIZE = 20;
+    private static final String LOADPAGECONTROLLER = "LoadPageSearchController";
+    private static final String ERROR = "error.jsp";
     private static final String SEARCHPAGE = "adminSearchPage.jsp";
 
     /**
@@ -34,10 +40,22 @@ public class SearchQuestionController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SEARCHPAGE;
+        String url = ERROR;
         try {
+            HttpSession session = request.getSession();
+            QuestionDAO dao = new QuestionDAO();
             String txtSearch = request.getParameter("txtSearchQuestion");
-            
+            if (!txtSearch.trim().equals("")) {
+                List<Question> listResultSearch = dao.getListQuestionSearch(txtSearch);
+                session.setAttribute("LIST_SEARCH_ALL", listResultSearch);
+                int page = (int) Math.ceil((double) listResultSearch.size() / PAGE_SIZE);
+                session.setAttribute("PAGE", page);
+                session.setAttribute("SEARCH_VALUE", txtSearch);
+                url = LOADPAGECONTROLLER;
+            } else {
+                url = SEARCHPAGE;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

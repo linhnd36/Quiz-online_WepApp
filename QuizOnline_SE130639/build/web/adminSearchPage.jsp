@@ -43,17 +43,60 @@
                     </div>
                 </nav>
             </header>
-            <div class="bgcolor">
+            <div class="bgcolor" style="height: 100%">
                 <div class="container">
                     <h1 class="p-5">Search Page</h1> 
                     <form class="example" action="MainController">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="txtSearchQuestion" placeholder="Search Question">
+                            <input type="text" class="form-control" name="txtSearchQuestion" placeholder="Search Question" value="${SEARCH_VALUE}">
                             <div class="input-group-append">
                                 <button class="btn btn-success" type="submit" value="Search" name="action">Search</button>
                             </div>
                         </div>
                     </form>
+                    <c:if test="${LIST_SUB_PAGE != null}">
+                        <c:forEach var="question" items="${LIST_SUB_PAGE}">
+                            <div class="col-sm-12 pt-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            ${question.questionContent}
+                                        </p>
+                                        <label>Answer:</label><br />
+                                        <c:forEach var="answer" items="${question.answerCollection}">
+                                            <div class="form-check ">
+                                                <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionA">
+                                                <label class=""> ${answer.answerContent}</label>
+                                            </div>
+                                        </c:forEach>
+                                        <button type="submit" class="btn btn-success mt-3" name="action" value="InpustQuestion">
+                                            Update</button>
+                                        <button type="submit" class="btn btn-danger mt-3" name="action" value="InpustQuestion">
+                                            Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+
+
+                    <nav>
+                        <c:if test="${PAGE > 1}">
+                            <ul class="pagination pt-2" style="margin-left: 40%;">
+                                <c:forEach var="index" begin="1" end="${PAGE}">
+                                    <form action="LoadPageSearchController">
+                                        <li class="page-item 
+                                            <c:if test="${index == CURRENT_PAGE}">
+                                                active
+                                            </c:if>
+                                            ">
+                                            <input class="page-link" type="submit" value="${index}" name="pageIndex"/>
+                                        </li>
+                                    </form>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                    </nav>
                 </div>
             </div>
         </form>

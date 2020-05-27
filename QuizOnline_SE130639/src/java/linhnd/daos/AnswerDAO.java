@@ -75,7 +75,7 @@ public class AnswerDAO implements Serializable {
             Query query = em.createQuery("SELECT a FROM Answer a WHERE a.answerContent = :answerContent AND a.questionId.questionId = :questionId");
             query.setParameter("answerContent", correctAnswer);
             query.setParameter("questionId", questionId);
-            Answer answer = (Answer) query.getSingleResult();
+            Answer answer = (Answer) query.setFirstResult(0).setMaxResults(1).getSingleResult();
             result = answer.getAnswerId();
             em.getTransaction().commit();
         } catch (Exception e) {

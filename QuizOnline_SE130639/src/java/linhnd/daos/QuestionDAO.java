@@ -105,8 +105,10 @@ public class QuestionDAO implements Serializable {
         List<Question> listQuestionSearch = null;
         try {
             em.getTransaction().begin();
-            Query query = em.createQuery("");
-            listQuestionSearch = query.setMaxResults(20).getResultList();
+            Query query = em.createQuery("SELECT q FROM Question q, Subject s WHERE q.questionContent LIKE :textSearch OR s.subjectName LIKE :textSearchSubject");
+            query.setParameter("textSearch", "%" + txtSearch + "%");
+            query.setParameter("textSearchSubject", "%" + txtSearch + "%");
+            listQuestionSearch = query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
