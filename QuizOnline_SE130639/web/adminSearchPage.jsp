@@ -63,10 +63,15 @@
                                             ${question.questionContent}
                                         </p>
                                         <label>Answer:</label><br />
-                                        <c:forEach var="answer" items="${question.answerCollection}">
+                                        <c:forEach var="answer" items="${question.answerCollection}" varStatus="counter">
                                             <div class="form-check ">
                                                 <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionA">
-                                                <label class=""> ${answer.answerContent}</label>
+                                                <label class=""><c:choose  >
+                                                        <c:when test="${counter.count == 1}">A.</c:when>
+                                                        <c:when test="${counter.count == 2}">B.</c:when>
+                                                        <c:when test="${counter.count == 3}">C.</c:when>
+                                                        <c:when test="${counter.count == 4}">D.</c:when>
+                                                </c:choose> ${answer.answerContent}</label>
                                             </div>
                                         </c:forEach>
                                         <button type="submit" class="btn btn-success mt-3" name="action" value="InpustQuestion">

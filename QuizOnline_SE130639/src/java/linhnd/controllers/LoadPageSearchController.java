@@ -57,8 +57,7 @@ public class LoadPageSearchController extends HttpServlet implements Serializabl
             List<Question> listSubPage = listSearchQuestion.subList(startPage, endPage);
             if (!listSubPage.isEmpty()) {
                 session.setAttribute("LIST_SUB_PAGE", listSubPage);
-            }
-            
+            }            
             session.setAttribute("CURRENT_PAGE", index);
             url = ADMIN_SEARCH_PAGE;
         } catch (Exception e) {
