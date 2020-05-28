@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "LogOutController", urlPatterns = {"/LogOutController"})
 public class LogOutController extends HttpServlet {
+
+    static Logger LOGGER = Logger.getLogger(LogOutController.class);
 
     private final static String ERROR = "error.jsp";
     private final static String SUCESS = "login.jsp";
@@ -42,7 +45,8 @@ public class LogOutController extends HttpServlet {
             session.invalidate();
             url = SUCESS;
         } catch (Exception e) {
-            log("LogoutController" + e.getMessage());
+            LOGGER.fatal(e.getMessage());
+            e.printStackTrace();
         } finally {
             response.sendRedirect(url);
         }

@@ -3,26 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package linhnd.controllers;
+package linhnd.controller.admin;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import linhnd.daos.SubjectDAO;
-import linhnd.dtos.Subject;
+import javax.servlet.http.HttpSession;
+import linhnd.daos.QuestionDAO;
+import linhnd.dtos.Question;
+import org.apache.log4j.Logger;
 
 /**
  *
- * @author Duc Linh
+ * @author PC
  */
-@WebServlet(name = "StudentController", urlPatterns = {"/StudentController"})
-public class StudentController extends HttpServlet {
+@WebServlet(name = "LoadPageSearchController", urlPatterns = {"/LoadPageSearchController"})
+public class LoadPageSearchController extends HttpServlet implements Serializable {
 
-    private static final String STUDENTPAGE = "student.jsp";
+    static Logger LOGGER = Logger.getLogger(LoadPageSearchController.class);
+
+    private final static int PAGE_SIZE = 20;
+    private final static String ERROR = "error.jsp";
+    private final static String ADMIN_SEARCH_PAGE = "adminSearchPage.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +43,30 @@ public class StudentController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = STUDENTPAGE;
+        String url = ERROR;
         try {
-            SubjectDAO dao = new SubjectDAO();
-            List<Subject> listSubject = dao.getSubject();
-            request.setAttribute("LISTSUBJECT", listSubject);
+            QuestionDAO dao = new QuestionDAO();
+            HttpSession session = request.getSession();
+            String txtSearch = (String) session.getAttribute("SEARCH_VALUE");
+            String subjectId = (String) session.getAttribute("SUBJECT_VALUE");
+            String statusQuestion = (String) session.getAttribute("STATUS_QUESTION");
+            String pageIndex = request.getParameter("pageIndex");
+            int index = 1;
+            if (pageIndex != null) {
+                index = Integer.parseInt(pageIndex);
+            }
+            int startPage = (index - 1) * PAGE_SIZE;
+            List<Question> listSubPage = dao.subListQuestionSearch(txtSearch, subjectId, statusQuestion, startPage, PAGE_SIZE);
+            if (listSubPage.isEmpty()) {
+                session.setAttribute("LIST_SUB_PAGE", "noQuestion");
+            } else {
+                session.setAttribute("LIST_SUB_PAGE", listSubPage);
+            }
+          
+            session.setAttribute("CURRENT_PAGE", index);
+            url = ADMIN_SEARCH_PAGE;
         } catch (Exception e) {
+            LOGGER.fatal(e);
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

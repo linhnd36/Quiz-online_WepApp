@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package linhnd.controllers;
+package linhnd.controller.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import linhnd.daos.AnswerDAO;
 import linhnd.daos.QuestionDAO;
 import linhnd.dtos.Question;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -23,6 +24,8 @@ import linhnd.dtos.Question;
  */
 @WebServlet(name = "InsertQuestionController", urlPatterns = {"/InsertQuestionController"})
 public class InsertQuestionController extends HttpServlet {
+
+    static Logger LOGGER = Logger.getLogger(InsertQuestionController.class);
 
     private static final String ADMINCONTROLLER = "AdminController";
 
@@ -101,6 +104,7 @@ public class InsertQuestionController extends HttpServlet {
             }
         } catch (Exception e) {
             request.setAttribute("ERROR", "Inpust question Error !");
+            LOGGER.fatal(e.getMessage());
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

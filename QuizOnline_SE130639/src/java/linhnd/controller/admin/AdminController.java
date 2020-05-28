@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package linhnd.controllers;
+package linhnd.controller.admin;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,19 +13,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import linhnd.dtos.Answer;
-import linhnd.dtos.Question;
+import linhnd.daos.SubjectDAO;
+import linhnd.dtos.Subject;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author PC
  */
-@WebServlet(name = "LoadPageSearchController", urlPatterns = {"/LoadPageSearchController"})
-public class LoadPageSearchController extends HttpServlet implements Serializable{
-
-    private final static int PAGE_SIZE = 20;
-    private final static String ERROR = "error.jsp";
-    private final static String ADMIN_SEARCH_PAGE = "adminSearchPage.jsp";
+@WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
+public class AdminController extends HttpServlet {
+    
+    static Logger LOGGER = Logger.getLogger(AdminController.class);
+    
+    private static final String ADMINPAGE = "adminInsertPage.jsp";
+    private static final String ERRORPAGE = "error.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,28 +41,16 @@ public class LoadPageSearchController extends HttpServlet implements Serializabl
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = ERRORPAGE;
         try {
             HttpSession session = request.getSession();
-            String pageIndex = request.getParameter("pageIndex");
-            int index = 1;
-            if (pageIndex != null) {
-                index = Integer.parseInt(pageIndex);
-            }
-            List<Question> listSearchQuestion = (List<Question>) session.getAttribute("LIST_SEARCH_ALL");
-            int startPage = (index - 1) * PAGE_SIZE;
-            int endPage = index * PAGE_SIZE;
-            if (endPage > listSearchQuestion.size()) {
-                endPage = listSearchQuestion.size();
-            }
-            List<Question> listSubPage = listSearchQuestion.subList(startPage, endPage);
-            if (!listSubPage.isEmpty()) {
-                session.setAttribute("LIST_SUB_PAGE", listSubPage);
-            }            
-            session.setAttribute("CURRENT_PAGE", index);
-            url = ADMIN_SEARCH_PAGE;
+            SubjectDAO dao = new SubjectDAO();
+            List<Subject> listSubject = dao.getSubject();
+            session.setAttribute("SUBJECT", listSubject);
+            url = ADMINPAGE;
         } catch (Exception e) {
             e.printStackTrace();
+            LOGGER.fatal(e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -29,7 +29,7 @@
                                 <a class="nav-link" href="#">Create Question</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="adminSearchPage.jsp">Search Question</a>
+                                <a class="nav-link" href="PageSearchController">Search Question</a>
                             </li>
                             <li class="nav-item ml-5">
                                 <span class="text-danger">Welcome ${sessionScope.NAME}</span>
@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <label>Subject:</label>
                         <select class="form-control" name="txtSelectSubject">
-                            <c:set var="ListSubject" value="${requestScope.SUBJECT}"/>
+                            <c:set var="ListSubject" value="${sessionScope.SUBJECT}"/>
                             <c:forEach var="subjectDao" items="${ListSubject}">
                                 <option value="${subjectDao.subjectId}">${subjectDao.subjectId}-${subjectDao.subjectName}</option>
                             </c:forEach>

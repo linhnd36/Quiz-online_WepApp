@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import linhnd.daos.AccountDAO;
 import linhnd.dtos.AccountCrearteError;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -21,6 +22,8 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 @WebServlet(name = "RegistrationController", urlPatterns = {"/RegistrationController"})
 public class RegistrationController extends HttpServlet {
+
+    static Logger LOGGER = Logger.getLogger(RegistrationController.class);
 
     private static final String LOGINPAGE = "login.jsp";
     private static final String SIGNUPPAGE = "signUp.jsp";
@@ -74,6 +77,7 @@ public class RegistrationController extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+            LOGGER.fatal(e.getMessage());
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

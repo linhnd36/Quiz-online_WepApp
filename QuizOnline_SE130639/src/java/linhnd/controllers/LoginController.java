@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import linhnd.daos.AccountDAO;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -21,6 +22,8 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
+
+    static Logger LOGGER = Logger.getLogger(LoginController.class);
 
     private static final String ERROR = "login.jsp";
     private static final String STUDENT = "StudentController";
@@ -70,7 +73,8 @@ public class LoginController extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            log("Error LoginServlet" + e.getMessage());
+            LOGGER.fatal(e.getMessage());
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

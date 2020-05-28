@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -19,12 +20,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
 
+    static Logger LOGGER = Logger.getLogger(MainController.class);
+
     private static final String ERROR = "error.jsp";
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogOutController";
     private static final String INPUSTQUESTION = "InsertQuestionController";
     private static final String REGISTRATION = "RegistrationController";
     private static final String SEARCHQUESTION = "SearchQuestionController";
+    private static final String DELETECONTROLLER = "DeleteQuestionController";
+    private static final String GETDETAILQUESTION = "GetDetailQuestionController";
+    private static final String UPDATEQUESTIONCONTROLLER = "UpdateQuestionController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,13 +58,23 @@ public class MainController extends HttpServlet {
             }
             if (action.equals("Registration")) {
                 url = REGISTRATION;
-            }if (action.equals("Search")) {
+            }
+            if (action.equals("Search")) {
                 url = SEARCHQUESTION;
-            }else {
+            }
+            if (action.equals("btnDelete")) {
+                url = DELETECONTROLLER;
+            }
+            if (action.equals("btnDetail")) {
+                url = GETDETAILQUESTION;
+            }if (action.equals("updateQuestion")) {
+                url = UPDATEQUESTIONCONTROLLER;
+            }  
+            else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }
         } catch (Exception e) {
-            log("Error in MainController :" + e.getMessage());
+            LOGGER.fatal(e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
