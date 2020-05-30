@@ -31,6 +31,7 @@ public class MainController extends HttpServlet {
     private static final String DELETECONTROLLER = "DeleteQuestionController";
     private static final String GETDETAILQUESTION = "GetDetailQuestionController";
     private static final String UPDATEQUESTIONCONTROLLER = "UpdateQuestionController";
+    private static final String TESTCONTROLLER = "MakeTestController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,10 +68,13 @@ public class MainController extends HttpServlet {
             }
             if (action.equals("btnDetail")) {
                 url = GETDETAILQUESTION;
-            }if (action.equals("updateQuestion")) {
+            }
+            if (action.equals("updateQuestion")) {
                 url = UPDATEQUESTIONCONTROLLER;
-            }  
-            else {
+            }
+            if (action.equals("btnStartQuiz")) {
+                url = TESTCONTROLLER;
+            } else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }
         } catch (Exception e) {

@@ -62,9 +62,9 @@ public class SearchQuestionController extends HttpServlet {
                 url = SEARCHCONTROLLER;
             }
 
-        } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
-            e.printStackTrace();
+        } catch (Exception ex) {
+            LOGGER.fatal(ex);
+            ex.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

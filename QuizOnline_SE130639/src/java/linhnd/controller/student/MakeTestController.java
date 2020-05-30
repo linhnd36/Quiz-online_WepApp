@@ -3,29 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package linhnd.controller.admin;
+package linhnd.controller.student;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import linhnd.daos.QuestionDAO;
+import linhnd.daos.SubjectDAO;
 import linhnd.dtos.Question;
+import linhnd.dtos.Subject;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author PC
  */
-@WebServlet(name = "GetDetailQuestionController", urlPatterns = {"/GetDetailQuestionController"})
-public class GetDetailQuestionController extends HttpServlet {
+@WebServlet(name = "MakeTestController", urlPatterns = {"/MakeTestController"})
+public class MakeTestController extends HttpServlet {
 
-    static Logger LOGGER = Logger.getLogger(UpdateQuestionController.class);
+    static Logger LOGGER = Logger.getLogger(MakeTestController.class);
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "updateQuestion.jsp";
+    private static final String SUCESS = "studentTest.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,18 +45,23 @@ public class GetDetailQuestionController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String questionIdString = request.getParameter("questionID");
-            int questionId = Integer.parseInt(questionIdString);
-            QuestionDAO dao = new QuestionDAO();
-            Question question = dao.getQuestionById(questionId);
-            request.setAttribute("DETAIL_QUESTION", question);
-            url = SUCCESS;
+            HttpSession session = request.getSession();
+            String subjectId = request.getParameter("subjectId");
+            SubjectDAO daoSubject = new SubjectDAO();
+            QuestionDAO daoQuestion = new QuestionDAO();
+            Subject subject = daoSubject.getSubjectById(subjectId);
+            LinkedHashMap<String, Question> mapRandomQuestion = daoQuestion.getListQuestionRandom(subject.getNumberOfQuestions(), subject.getSubjectId());
+            session.setAttribute("MAP_QUESTION_TEST", mapRandomQuestion);
+            session.setAttribute("SUBJECT_TEST", subject);
+            url = SUCESS;
+
         } catch (Exception e) {
             LOGGER.fatal(e);
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -104,7 +104,7 @@ public class InsertQuestionController extends HttpServlet {
             }
         } catch (Exception e) {
             request.setAttribute("ERROR", "Inpust question Error !");
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

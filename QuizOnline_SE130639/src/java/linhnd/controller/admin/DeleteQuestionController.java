@@ -46,7 +46,7 @@ public class DeleteQuestionController extends HttpServlet {
                 url = SUCCESS;
             }
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

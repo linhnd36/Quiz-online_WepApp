@@ -43,28 +43,29 @@
                     </div>
                 </nav>
             </header>
-            <div class="bgcolor">
-                <div class="container">
-                    <h3 class="p-5">Select subjects you want quiz !</h3>
-                    <div class="row show_subjects">
-                        <c:set var="listSubject" value="${requestScope.LISTSUBJECT}"/>
-                        <c:if test="${not empty listSubject}">
-                            <c:forEach var="subject" items="${listSubject}">
-                                <div class="col-md-3 ">
+        </form>
+
+        <div class="bgcolor">
+            <div class="container">
+                <h3 class="p-5">Select subjects you want quiz !</h3>
+                <div class="row show_subjects">
+                    <c:set var="listSubject" value="${requestScope.LISTSUBJECT}"/>
+                    <c:if test="${not empty listSubject}">
+                        <c:forEach var="subject" items="${listSubject}">
+                            <form action="MainController" class="col-3">
                                     <div class="box_subject">
                                         <h4 class="box_subject_title">${subject.subjectId}</h4>
                                         <span class="box_subject_conten">${subject.subjectName}
                                         </span>
-                                        <button type="button" class="btn btn-primary m-2">Start</button>
+                                        <input type="hidden" name="subjectId" value="${subject.subjectId}"/>
+                                        <button type="submit" class="btn btn-primary m-2" name="action" value="btnStartQuiz">Start</button>
                                     </div>
-                                </div>
-                            </c:forEach>
-                        </c:if>
-                        
-                    </div>
+                            </form>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
-        </form>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

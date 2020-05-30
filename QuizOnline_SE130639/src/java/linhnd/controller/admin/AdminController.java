@@ -50,7 +50,7 @@ public class AdminController extends HttpServlet {
             url = ADMINPAGE;
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

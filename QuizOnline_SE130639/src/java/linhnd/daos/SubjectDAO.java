@@ -19,7 +19,7 @@ import linhnd.dtos.Subject;
  *
  * @author PC
  */
-public class SubjectDAO implements Serializable{
+public class SubjectDAO implements Serializable {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("QuizOnline_SE130639PU");
 
@@ -36,7 +36,7 @@ public class SubjectDAO implements Serializable{
             em.close();
         }
     }
-    
+
     public List<Subject> getSubject() {
         List<Subject> listSubject = null;
         EntityManager em = emf.createEntityManager();
@@ -48,12 +48,26 @@ public class SubjectDAO implements Serializable{
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
             em.getTransaction().rollback();
-        } finally {           
+        } finally {
             em.close();
         }
         return listSubject;
     }
-    
-    
-    
+
+    public Subject getSubjectById(String subjectId) {
+        EntityManager em = emf.createEntityManager();
+        Subject subject = null;
+        try {
+            em.getTransaction().begin();
+            subject = em.find(Subject.class, subjectId);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return subject;
+    }
+
 }

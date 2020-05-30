@@ -4,3 +4,27 @@ FATAL   2020-05-28 17:09:03,293 [http-nio-8084-exec-10] linhnd.controllers.MainC
 FATAL   2020-05-28 17:09:16,931 [http-nio-8084-exec-3] linhnd.controllers.MainController  - Test Log file
 FATAL   2020-05-28 17:09:20,927 [http-nio-8084-exec-2] linhnd.controllers.MainController  - Test Log file
 FATAL   2020-05-28 17:56:51,173 [http-nio-8084-exec-29] linhnd.controllers.LoadPageSearchController  - 
+FATAL   2020-05-29 16:29:23,241 [http-nio-8084-exec-25] linhnd.controller.admin.SearchQuestionController  - 
+FATAL   2020-05-29 16:31:47,215 [http-nio-8084-exec-27] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException
+FATAL   2020-05-29 16:38:11,912 [http-nio-8084-exec-44] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:02:33,418 [http-nio-8084-exec-81] linhnd.controller.student.MakeTestController  - java.lang.NumberFormatException: For input string: "PRJ321"
+FATAL   2020-05-29 17:04:12,337 [http-nio-8084-exec-87] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:08:02,837 [http-nio-8084-exec-98] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:13:57,028 [http-nio-8084-exec-101] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:15:31,678 [http-nio-8084-exec-107] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:17:47,703 [http-nio-8084-exec-125] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:26:22,824 [http-nio-8084-exec-127] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:27:26,877 [http-nio-8084-exec-138] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 17:47:30,602 [http-nio-8084-exec-8] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 22:24:58,251 [http-nio-8084-exec-7] linhnd.controller.student.MakeTestController  - java.lang.ClassCastException: java.lang.Integer cannot be cast to linhnd.dtos.Question
+FATAL   2020-05-29 22:31:46,923 [http-nio-8084-exec-21] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 22:34:05,945 [http-nio-8084-exec-24] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 22:34:59,994 [http-nio-8084-exec-27] linhnd.controller.student.MakeTestController  - java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to linhnd.dtos.Question
+FATAL   2020-05-29 22:42:21,466 [http-nio-8084-exec-48] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 22:43:20,630 [http-nio-8084-exec-54] linhnd.controller.student.MakeTestController  - java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to linhnd.dtos.Question
+FATAL   2020-05-29 22:45:15,260 [http-nio-8084-exec-59] linhnd.controller.student.MakeTestController  - java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to linhnd.dtos.Question
+FATAL   2020-05-29 22:58:06,927 [http-nio-8084-exec-78] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 22:59:05,908 [http-nio-8084-exec-80] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 23:00:28,641 [http-nio-8084-exec-84] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-29 23:02:41,737 [http-nio-8084-exec-102] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-30 17:55:09,682 [http-nio-8084-exec-11] linhnd.controller.student.MakeTestController  - java.lang.IllegalStateException: setAttribute: Session [5A66DF3DF917FD38140CFC03D8FDA011] has already been invalidated

@@ -7,6 +7,8 @@ package linhnd.daos;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,7 +128,8 @@ public class QuestionDAO implements Serializable {
         List<Question> listQuestionSearch = null;
         try {
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT q FROM Question q, Subject s WHERE q.subjectId.subjectId = s.subjectId AND q.questionContent LIKE :textSearch AND q.subjectId.subjectId = :subjectId AND q.statusId.statusId = :statusQUestion");
+            Query query = em.createQuery("SELECT q FROM Question q, Subject s WHERE q.subjectId.subjectId = s.subjectId "
+                    + "AND q.questionContent LIKE :textSearch AND q.subjectId.subjectId = :subjectId AND q.statusId.statusId = :statusQUestion");
             query.setParameter("textSearch", "%" + txtSearch + "%");
             query.setParameter("subjectId", subjectId);
             query.setParameter("statusQUestion", statusQuestion);
@@ -177,7 +180,7 @@ public class QuestionDAO implements Serializable {
         return question;
     }
 
-    public boolean updateQuestion(int questionId, String questionContent, String subjectId, List<Answer> lsitAnswer,int answerId) {
+    public boolean updateQuestion(int questionId, String questionContent, String subjectId, List<Answer> lsitAnswer, int answerId) {
         EntityManager em = emf.createEntityManager();
         boolean check = false;
         try {
@@ -198,4 +201,30 @@ public class QuestionDAO implements Serializable {
         }
         return check;
     }
+
+    public LinkedHashMap<String, Question> getListQuestionRandom(int numberOfQuestion, String subjectId) {
+        EntityManager em = emf.createEntityManager();
+        List<Integer> listQuestionId = null;
+        LinkedHashMap<String, Question> listRandomQuestion = new LinkedHashMap<>();
+        int count = 1;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createNativeQuery("SELECT q.QuestionId FROM dbo.Question q WHERE q.SubjectId = ? AND q.StatusId = 'QuesActive' ORDER BY NEWID()");
+            listQuestionId = query.setParameter(1, subjectId).setMaxResults(numberOfQuestion).getResultList();
+            if (!listQuestionId.isEmpty()) {
+                for (Integer questionId : listQuestionId) {
+                    listRandomQuestion.put("Question " + count, em.find(Question.class, questionId));
+                    count++;
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return listRandomQuestion;
+    }
+
 }

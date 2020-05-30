@@ -6,13 +6,13 @@
 package linhnd.controller.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import linhnd.daos.QuestionDAO;
 import linhnd.dtos.Answer;
 import linhnd.dtos.Question;
@@ -28,7 +28,7 @@ public class UpdateQuestionController extends HttpServlet {
     static Logger LOGGER = Logger.getLogger(UpdateQuestionController.class);
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "error.jsp";
+    private static final String SUCCESS = "LoadPageSearchController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -98,7 +98,7 @@ public class UpdateQuestionController extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
             e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
