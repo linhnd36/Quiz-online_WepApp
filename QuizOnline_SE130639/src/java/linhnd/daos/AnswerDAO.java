@@ -87,4 +87,20 @@ public class AnswerDAO implements Serializable {
         return result;
     }
 
+    public Answer getAnswer(int answerId) {
+        EntityManager em = emf.createEntityManager();
+        Answer answer = null;
+        try {
+            em.getTransaction().begin();
+            answer = em.find(Answer.class, answerId);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return answer;
+    }
+
 }

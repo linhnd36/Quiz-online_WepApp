@@ -128,7 +128,7 @@ public class Subject implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Subject[ subjectId=" + subjectId + " ]";
+        return "linhnd.dtos.Subject[ subjectId=" + subjectId + " ]";
     }
     
 }

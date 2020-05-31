@@ -36,50 +36,43 @@
   </header>
   <div class="bgcolor">
     <div class="container">
-      <div class="row p-5">
-        <h3>PRJ311 - Java Desktop</h3>
-        <button type="button" class="btn btn-success ml-5">Submit</button>
+      <div class="p-5">
+        <h5 class="p-2">Exam : PRJ311 - Java Desktop</h5>
+        <h5 class="p-2">Score : 0.0</h5>
+        <h5 class="p-2">Number Of Correct Answer : 0/40 </h5>
+        <button type="submit" class="btn btn-primary">Another Test</button>
       </div>
-      <span id="timeDisplay">00:00:00</span>
-      <div class="col-sm-12 pt-2">
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-            </p>
-            <label>Select your answer:</label><br />
-            <div class="form-check ">
-              <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionA">
-              <label class="">A. </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionB">
-              <label>B. </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionC">
-              <label>C. </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionD">
-              <label>D. </label>
+      <div>
+        <h4>Quiz Detail:</h4>
+        <div class="col-sm-12 pt-2">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.
+              </p>
+              <label>Select your answer:</label><br />
+              <div class="form-check ">
+                <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionA">
+                <label class="">A. </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionB">
+                <label>B. </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionC">
+                <label>C. </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="txtCorrectAnswer" value="optionD">
+                <label>D. </label>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div style="margin-top:20px; width: 1000px;">
-          <ul class="row" style="list-style: none;">
-            <li class="page-item active"><a class="page-link" href="#" onclick="previousQuestion()">Previous</a></li>
-            <li class="page-item "><a class="page-link" href="#" onclick="selectQuestion(2)">1</a></li>
-            <li class="page-item "><a class="page-link" href="#">1</a></li>
-            <li class="page-item "><a class="page-link" href="#">1</a></li>
-            <li class="page-item active"><a class="page-link" href="#" onclick="nextQuestion()">Next</a></li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
   </div>
-  <script src="/makeTest.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -89,10 +82,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-  <script>
-    setDefaultQuiz(40, 40);
-    quizStart();
-  </script>
 </body>
 
 </html>

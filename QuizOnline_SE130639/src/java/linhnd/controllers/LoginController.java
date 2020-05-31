@@ -59,6 +59,7 @@ public class LoginController extends HttpServlet {
                     HttpSession session = request.getSession();
                     String name = dao.getName(email);
                     session.setAttribute("NAME", name);
+                    session.setAttribute("EMAIL", email);
                     if (role.equals("Student")) {
                         if (statusAccount.equals("New")) {
                             request.setAttribute("ERRORLOGIN", "Account not found !");

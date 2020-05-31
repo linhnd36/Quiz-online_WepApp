@@ -19,7 +19,7 @@
     </head>
 
     <body class="body">
-        <form action="MainController">
+        <form action="MainController" method="POST">
             <header>
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a class="navbar-brand" href="#">QuizOnline - Admin Page</a>

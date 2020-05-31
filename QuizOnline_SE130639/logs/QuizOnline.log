@@ -28,3 +28,22 @@ FATAL   2020-05-29 22:59:05,908 [http-nio-8084-exec-80] linhnd.controller.studen
 FATAL   2020-05-29 23:00:28,641 [http-nio-8084-exec-84] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
 FATAL   2020-05-29 23:02:41,737 [http-nio-8084-exec-102] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
 FATAL   2020-05-30 17:55:09,682 [http-nio-8084-exec-11] linhnd.controller.student.MakeTestController  - java.lang.IllegalStateException: setAttribute: Session [5A66DF3DF917FD38140CFC03D8FDA011] has already been invalidated
+FATAL   2020-05-31 11:31:07,302 [http-nio-8084-exec-152] linhnd.controller.student.MakeTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 12:19:57,238 [http-nio-8084-exec-165] linhnd.controller.student.FinishTestController  - java.lang.IllegalStateException: 
+Exception Description: No transaction is currently active
+FATAL   2020-05-31 12:29:53,470 [http-nio-8084-exec-185] linhnd.controller.student.FinishTestController  - java.lang.IllegalStateException: 
+Exception Description: No transaction is currently active
+FATAL   2020-05-31 21:11:04,203 [http-nio-8084-exec-20] linhnd.controllers.MainController  - 
+FATAL   2020-05-31 21:11:26,311 [http-nio-8084-exec-19] linhnd.controllers.MainController  - 
+FATAL   2020-05-31 21:11:47,881 [http-nio-8084-exec-11] linhnd.controller.student.LoadPageDetailTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 21:12:08,787 [http-nio-8084-exec-20] linhnd.controller.student.LoadPageDetailTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 21:15:45,216 [http-nio-8084-exec-25] linhnd.controller.student.LoadPageDetailTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 21:18:17,042 [http-nio-8084-exec-28] linhnd.controller.student.LoadPageDetailTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 21:19:39,417 [http-nio-8084-exec-32] linhnd.controller.student.LoadPageDetailTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 21:21:15,616 [http-nio-8084-exec-47] linhnd.controller.student.LoadPageDetailTestController  - java.lang.NullPointerException
+FATAL   2020-05-31 22:32:03,358 [http-nio-8084-exec-119] linhnd.controllers.MainController  - 
+FATAL   2020-05-31 22:34:28,327 [http-nio-8084-exec-130] linhnd.controllers.MainController  - 
+FATAL   2020-05-31 22:37:12,388 [http-nio-8084-exec-136] linhnd.controller.admin.AdminController  - java.lang.NumberFormatException: null
+FATAL   2020-05-31 22:37:23,534 [http-nio-8084-exec-138] linhnd.controller.admin.UpdateQuestionController  - java.lang.NumberFormatException: null
+FATAL   2020-05-31 22:37:33,196 [http-nio-8084-exec-134] linhnd.controller.admin.InsertQuestionController  - java.lang.NullPointerException
+FATAL   2020-05-31 22:38:53,710 [http-nio-8084-exec-130] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException

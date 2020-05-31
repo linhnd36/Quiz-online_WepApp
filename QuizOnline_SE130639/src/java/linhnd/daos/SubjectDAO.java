@@ -6,6 +6,7 @@
 package linhnd.daos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import linhnd.dtos.Question;
 import linhnd.dtos.Subject;
 
 /**
@@ -38,12 +40,21 @@ public class SubjectDAO implements Serializable {
     }
 
     public List<Subject> getSubject() {
-        List<Subject> listSubject = null;
+        List<Subject> listSubjectInvalid = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT s FROM Subject s");
-            listSubject = query.getResultList();
+            Query query = em.createQuery("SELECT s FROM Subject s ");
+            List<Subject> listSubject = query.getResultList();
+            for (Subject subject : listSubject) {
+                Query queryCount = em.createQuery("SELECT q FROM Question q WHERE q.subjectId.subjectId = :subjectId ");
+                queryCount.setParameter("subjectId", subject.getSubjectId());
+                List<Question> listResult = queryCount.getResultList();
+                int numberQuestionInData = listResult.size();
+                if (subject.getNumberOfQuestions() < numberQuestionInData) {
+                    listSubjectInvalid.add(subject);
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
@@ -51,7 +62,7 @@ public class SubjectDAO implements Serializable {
         } finally {
             em.close();
         }
-        return listSubject;
+        return listSubjectInvalid;
     }
 
     public Subject getSubjectById(String subjectId) {

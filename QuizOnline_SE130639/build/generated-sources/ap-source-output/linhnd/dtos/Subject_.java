@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import linhnd.dtos.Question;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-30T22:44:34")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-31T21:23:05")
 @StaticMetamodel(Subject.class)
 public class Subject_ { 
 

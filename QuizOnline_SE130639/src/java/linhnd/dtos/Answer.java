@@ -46,7 +46,7 @@ public class Answer implements Serializable {
     @Column(name = "AnswerContent")
     private String answerContent;
     @JoinColumn(name = "QuestionId", referencedColumnName = "QuestionId")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Question questionId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "answerId")
     private Collection<TestQuestions> testQuestionsCollection;
@@ -118,7 +118,7 @@ public class Answer implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Answer[ answerId=" + answerId + " ]";
+        return "linhnd.dtos.Answer[ answerId=" + answerId + " ]";
     }
     
 }

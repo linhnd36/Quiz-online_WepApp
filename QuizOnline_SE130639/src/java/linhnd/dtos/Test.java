@@ -6,12 +6,15 @@
 package linhnd.dtos;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,18 +46,19 @@ public class Test implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "TestId")
-    private String testId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer testId;
     @Basic(optional = false)
     @Column(name = "TestTitle")
     private String testTitle;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
     @Column(name = "Score")
-    private Double score;
+    private double score;
     @Basic(optional = false)
     @Column(name = "CreateDate")
     @Temporal(TemporalType.DATE)
     private Date createDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "testId")
+    @OneToMany(mappedBy = "testId", cascade = CascadeType.PERSIST)
     private Collection<TestQuestions> testQuestionsCollection;
     @JoinColumn(name = "Email", referencedColumnName = "Email")
     @ManyToOne(optional = false)
@@ -63,21 +67,22 @@ public class Test implements Serializable {
     public Test() {
     }
 
-    public Test(String testId) {
+    public Test(Integer testId) {
         this.testId = testId;
     }
 
-    public Test(String testId, String testTitle, Date createDate) {
+    public Test(Integer testId, String testTitle, double score, Date createDate) {
         this.testId = testId;
         this.testTitle = testTitle;
+        this.score = score;
         this.createDate = createDate;
     }
 
-    public String getTestId() {
+    public Integer getTestId() {
         return testId;
     }
 
-    public void setTestId(String testId) {
+    public void setTestId(Integer testId) {
         this.testId = testId;
     }
 
@@ -89,16 +94,19 @@ public class Test implements Serializable {
         this.testTitle = testTitle;
     }
 
-    public Double getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public String getCreateDate() {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(createDate);
+        return date;
     }
 
     public void setCreateDate(Date createDate) {
@@ -144,7 +152,7 @@ public class Test implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Test[ testId=" + testId + " ]";
+        return "linhnd.dtos.Test[ testId=" + testId + " ]";
     }
-    
+
 }

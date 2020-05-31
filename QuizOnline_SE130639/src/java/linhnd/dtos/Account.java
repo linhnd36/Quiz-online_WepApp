@@ -139,7 +139,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Account[ email=" + email + " ]";
+        return "linhnd.dtos.Account[ email=" + email + " ]";
     }
     
 }

@@ -102,7 +102,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Role[ roleId=" + roleId + " ]";
+        return "linhnd.dtos.Role[ roleId=" + roleId + " ]";
     }
     
 }

@@ -32,10 +32,10 @@
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Home</a>
+                                <a class="nav-link" href="StudentController">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">History</a>
+                                <a class="nav-link" href="HistoryController">History</a>
                             </li>
                             <li class="nav-item ml-5">
                                 <span class="text-danger">Welcome ${sessionScope.NAME}</span>
@@ -55,7 +55,7 @@
                 <form action="MainController" method="POST">
                     <div class="row p-5">
                         <h3>${SUBJECT_TEST.subjectId} - ${SUBJECT_TEST.subjectName}</h3>
-                        <button type="button" class="btn btn-success ml-5" name="btnSubmit" value="testFinish">Submit</button>
+                        <button type="submit" class="btn btn-success ml-5" id="btnSubmit" name="action" value="testFinish">Submit</button>
                     </div>
                     <h4>Time:</h4>
                     <h4 id="timeDisplay">00:00:00</h4>
@@ -68,7 +68,7 @@
                                 <label class="pl-2">Select your answer:</label>
                                 <c:forEach var="answer" items="${question.answerCollection}" varStatus="counter">
                                     <div class="form-check pl-5">
-                                        <input class="form-check-input" type="radio" name="${mapQuestion.key}" value="${answer}">
+                                        <input class="form-check-input" type="radio" name="${mapQuestion.key}" value="${answer.answerId}">
                                         <label class="">
                                             <c:choose  >
                                                 <c:when test="${counter.count == 1}">A. </c:when>
@@ -80,6 +80,7 @@
                                 </c:forEach>
                             </div>
                         </c:forEach> 
+                    </div>
                 </form>   
                 <div style="margin-top:20px; width: 1000px;">
                     <ul class="row" style="list-style: none;">
@@ -105,8 +106,8 @@ crossorigin="anonymous"></script>
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 crossorigin="anonymous"></script>
 <script>
-                                setDefaultQuiz(${SUBJECT_TEST.numberOfQuestions}, ${SUBJECT_TEST.timeTest});
-                                quizStart();
+                            setDefaultQuiz(${SUBJECT_TEST.numberOfQuestions}, ${SUBJECT_TEST.timeTest});
+                            quizStart();
 </script>
 </body>
 

@@ -32,6 +32,10 @@ public class MainController extends HttpServlet {
     private static final String GETDETAILQUESTION = "GetDetailQuestionController";
     private static final String UPDATEQUESTIONCONTROLLER = "UpdateQuestionController";
     private static final String TESTCONTROLLER = "MakeTestController";
+    private static final String FINISHTESTCONTROLLER = "FinishTestController";
+    private static final String STUDENTCONTROLLER = "StudentController";
+    private static final String STUDENTSEARCHCONTROLLER = "StudentSearchController";
+    private static final String GETDETAILTEST = "GetDetailTestController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,6 +78,18 @@ public class MainController extends HttpServlet {
             }
             if (action.equals("btnStartQuiz")) {
                 url = TESTCONTROLLER;
+            }
+            if (action.equals("testFinish")) {
+                url = FINISHTESTCONTROLLER;
+            }
+            if (action.equals("anotherTest")) {
+                url = STUDENTCONTROLLER;
+            }
+            if (action.equals("searchStudent")) {
+                url = STUDENTSEARCHCONTROLLER;
+            }
+            if (action.equals("showDetailTest")) {
+                url = GETDETAILTEST;
             } else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }

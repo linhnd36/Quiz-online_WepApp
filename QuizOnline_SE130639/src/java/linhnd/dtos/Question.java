@@ -57,7 +57,7 @@ public class Question implements Serializable {
     @Basic(optional = false)
     @Column(name = "CorrectAnswerID")
     private String correctAnswerID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionId")
+    @OneToMany(mappedBy = "questionId")
     private Collection<Answer> answerCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionId")
     private Collection<TestQuestions> testQuestionsCollection;
@@ -170,7 +170,7 @@ public class Question implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Question[ questionId=" + questionId + " ]";
+        return "linhnd.dtos.Question[ questionId=" + questionId + " ]";
     }
     
 }

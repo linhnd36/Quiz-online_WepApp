@@ -11,38 +11,41 @@ import java.io.Serializable;
  *
  * @author PC
  */
-public class AccountCrearteError implements Serializable{
-    private String emailIsExited;
-    private String confirmNoMatched;
-    private String passwordLeghtError;
+public class AccountCrearteError implements Serializable {
+
+    private String emailIsExited, passwordLeghtError, confirmNoMatched;
 
     public AccountCrearteError() {
+    }
+
+    public AccountCrearteError(String emailIsExited, String passwordLeghtError, String confirmNoMatched) {
+        this.emailIsExited = emailIsExited;
+        this.passwordLeghtError = passwordLeghtError;
+        this.confirmNoMatched = confirmNoMatched;
     }
 
     public String getEmailIsExited() {
         return emailIsExited;
     }
 
-    public String getConfirmNoMatched() {
-        return confirmNoMatched;
-    }
-
     public String getPasswordLeghtError() {
         return passwordLeghtError;
+    }
+
+    public String getConfirmNoMatched() {
+        return confirmNoMatched;
     }
 
     public void setEmailIsExited(String emailIsExited) {
         this.emailIsExited = emailIsExited;
     }
 
+    public void setPasswordLeghtError(String passwordLeghtError) {
+        this.passwordLeghtError = passwordLeghtError;
+    }
+
     public void setConfirmNoMatched(String confirmNoMatched) {
         this.confirmNoMatched = confirmNoMatched;
     }
 
-    public void setPasswordLeghtError(String passwordLeghtError) {
-        this.passwordLeghtError = passwordLeghtError;
-    }
-    
-    
-    
 }

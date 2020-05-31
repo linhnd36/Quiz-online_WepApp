@@ -113,7 +113,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.Status[ statusId=" + statusId + " ]";
+        return "linhnd.dtos.Status[ statusId=" + statusId + " ]";
     }
     
 }

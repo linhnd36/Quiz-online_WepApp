@@ -22,14 +22,14 @@
         <form action="MainController">
             <header>       
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a class="navbar-brand" href="#">QuizOnline</a>
+                    <a class="navbar-brand" href="#">Quiz-Online</a>
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">History</a>
+                                <a class="nav-link" href="HistoryController">History</a>
                             </li>
                             <li class="nav-item ml-5">
                                 <span class="text-danger">Welcome ${sessionScope.NAME}</span>
@@ -49,10 +49,10 @@
             <div class="container">
                 <h3 class="p-5">Select subjects you want quiz !</h3>
                 <div class="row show_subjects">
-                    <c:set var="listSubject" value="${requestScope.LISTSUBJECT}"/>
+                    <c:set var="listSubject" value="${LISTSUBJECT}"/>
                     <c:if test="${not empty listSubject}">
                         <c:forEach var="subject" items="${listSubject}">
-                            <form action="MainController" class="col-3">
+                            <form action="MainController" class="col-3" method="POST">
                                     <div class="box_subject">
                                         <h4 class="box_subject_title">${subject.subjectId}</h4>
                                         <span class="box_subject_conten">${subject.subjectName}

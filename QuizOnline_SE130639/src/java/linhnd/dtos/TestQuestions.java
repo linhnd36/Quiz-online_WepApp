@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +35,7 @@ public class TestQuestions implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "TestQuestionsId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer testQuestionsId;
     @JoinColumn(name = "AnswerId", referencedColumnName = "AnswerId")
     @ManyToOne(optional = false)
@@ -41,7 +44,7 @@ public class TestQuestions implements Serializable {
     @ManyToOne(optional = false)
     private Question questionId;
     @JoinColumn(name = "TestId", referencedColumnName = "TestId")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Test testId;
 
     public TestQuestions() {
@@ -105,7 +108,7 @@ public class TestQuestions implements Serializable {
 
     @Override
     public String toString() {
-        return "linhnd.daos.TestQuestions[ testQuestionsId=" + testQuestionsId + " ]";
+        return "linhnd.dtos.TestQuestions[ testQuestionsId=" + testQuestionsId + " ]";
     }
     
 }

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import linhnd.daos.SubjectDAO;
 import linhnd.dtos.Subject;
 import org.apache.log4j.Logger;
@@ -41,9 +42,10 @@ public class StudentController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = STUDENTPAGE;
         try {
+            HttpSession session = request.getSession();
             SubjectDAO dao = new SubjectDAO();
             List<Subject> listSubject = dao.getSubject();
-            request.setAttribute("LISTSUBJECT", listSubject);
+            session.setAttribute("LISTSUBJECT", listSubject);
         } catch (Exception e) {
             LOGGER.fatal(e.getMessage());
             e.printStackTrace();
