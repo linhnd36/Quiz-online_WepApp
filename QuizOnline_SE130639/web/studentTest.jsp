@@ -55,7 +55,7 @@
                 <form action="MainController" method="POST">
                     <div class="row p-5">
                         <h3>${SUBJECT_TEST.subjectId} - ${SUBJECT_TEST.subjectName}</h3>
-                        <button type="submit" class="btn btn-success ml-5" id="btnSubmit" name="action" value="testFinish">Submit</button>
+                        <button type="submit" class="btn btn-success ml-5" id="btnSubmit" name="action" value="testFinish" onclick="removeTime()">Submit</button>
                     </div>
                     <h4>Time:</h4>
                     <h4 id="timeDisplay">00:00:00</h4>

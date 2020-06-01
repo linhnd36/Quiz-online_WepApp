@@ -57,9 +57,9 @@ public class MakeTestController extends HttpServlet {
 
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
+            //request.getRequestDispatcher(url).forward(request, response);
         }
 
     }

@@ -67,7 +67,6 @@ public class LoadPageSearchController extends HttpServlet implements Serializabl
             url = ADMIN_SEARCH_PAGE;
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

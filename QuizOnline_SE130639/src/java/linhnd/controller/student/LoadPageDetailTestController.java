@@ -62,7 +62,6 @@ public class LoadPageDetailTestController extends HttpServlet {
             request.setAttribute("CURRENT_PAGE_DETAIL", index);            
             url = SUCESS;
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.fatal(e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

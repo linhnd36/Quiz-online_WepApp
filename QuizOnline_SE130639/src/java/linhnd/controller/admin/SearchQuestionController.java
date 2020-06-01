@@ -64,7 +64,6 @@ public class SearchQuestionController extends HttpServlet {
 
         } catch (Exception ex) {
             LOGGER.fatal(ex);
-            ex.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

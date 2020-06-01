@@ -6,8 +6,6 @@
 package linhnd.daos;
 
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,6 +19,8 @@ import linhnd.dtos.Status;
  * @author PC
  */
 public class AccountDAO implements Serializable {
+
+    static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(AccountDAO.class);
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("QuizOnline_SE130639PU");
 
@@ -39,7 +39,7 @@ public class AccountDAO implements Serializable {
             if (e.getMessage().equals("did not retrieve any entities")) {
                 return role;
             } else {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin " + e.getMessage());
+                LOGGER.fatal("checkLogin : " + e);
             }
             em.getTransaction().rollback();
         } finally {
@@ -60,7 +60,7 @@ public class AccountDAO implements Serializable {
             if (e.getMessage().equals("did not retrieve any entities")) {
                 return status;
             } else {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkLogin " + e.getMessage());
+                LOGGER.fatal("getStatusAccount : " + e);
             }
             em.getTransaction().rollback();
         } finally {
@@ -78,7 +78,7 @@ public class AccountDAO implements Serializable {
             name = account.getName();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function getName", e.getMessage());
+            LOGGER.fatal("getName : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -94,7 +94,7 @@ public class AccountDAO implements Serializable {
             account = em.find(Account.class, email);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function getName", e.getMessage());
+            LOGGER.fatal("getAccount : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -134,7 +134,7 @@ public class AccountDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function createNewAccount", e.getMessage());
+             LOGGER.fatal("createNewAccount : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -153,7 +153,7 @@ public class AccountDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function getName", e.getMessage());
+            LOGGER.fatal("updateStatus : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();

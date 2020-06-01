@@ -53,7 +53,7 @@ public class FinishTestController extends HttpServlet {
             LinkedHashMap<String, Question> listQuestionTest = (LinkedHashMap<String, Question>) session.getAttribute("MAP_QUESTION_TEST");
             Subject subject = (Subject) session.getAttribute("SUBJECT_TEST");
             List<TestQuestions> listAnswerStudentChoose = new ArrayList<>();
-            float score = 0;
+            double score = 0;
             int numberCorrectAnswer = 0;
             AnswerDAO daoAnswer = new AnswerDAO();
             if (listQuestionTest != null) {
@@ -61,7 +61,7 @@ public class FinishTestController extends HttpServlet {
                     String answerStudentChoose = request.getParameter(key);
 
                     TestQuestions testQuestion = new TestQuestions();
-                    
+
                     if (answerStudentChoose != null) {
                         testQuestion.setAnswerId(daoAnswer.getAnswer(Integer.parseInt(answerStudentChoose)));
                         testQuestion.setQuestionId(listQuestionTest.get(key));
@@ -76,7 +76,8 @@ public class FinishTestController extends HttpServlet {
                     }
                 }
             }
-            score = ((float) numberCorrectAnswer / subject.getNumberOfQuestions()) * 10;
+            score = (double) (Math.ceil(((float) numberCorrectAnswer / subject.getNumberOfQuestions()) * 1000) / 100);
+
             // insert test 
             TestDAO daoTest = new TestDAO();
             if (daoTest.newTest(subject.getSubjectId() + "-" + subject.getSubjectName(), score, email, listAnswerStudentChoose)) {
@@ -86,7 +87,6 @@ public class FinishTestController extends HttpServlet {
             }
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

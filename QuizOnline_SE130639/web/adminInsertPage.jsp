@@ -80,7 +80,9 @@
                         <select class="form-control" name="txtSelectSubject">
                             <c:set var="ListSubject" value="${sessionScope.SUBJECT}"/>
                             <c:forEach var="subjectDao" items="${ListSubject}">
-                                <option value="${subjectDao.subjectId}">${subjectDao.subjectId}-${subjectDao.subjectName}</option>
+                                <option value="${subjectDao.subjectId}" 
+                                        <c:if test="${requestScope.SUBJECT == subjectDao.subjectId}" > selected </c:if>
+                                        > ${subjectDao.subjectId}-${subjectDao.subjectName}</option>
                             </c:forEach>
                         </select>
                     </div>

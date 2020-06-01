@@ -98,7 +98,7 @@ public class MainController extends HttpServlet {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -6,7 +6,6 @@
 package linhnd.controller.student;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +43,7 @@ public class GetDetailTestController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {            
+        try {
             HttpSession session = request.getSession();
             String testIdString = request.getParameter("testId");
             int testId = Integer.parseInt(testIdString);
@@ -59,7 +58,6 @@ public class GetDetailTestController extends HttpServlet {
             url = SUCCESS;
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

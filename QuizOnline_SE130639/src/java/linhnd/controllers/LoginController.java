@@ -86,8 +86,7 @@ public class LoginController extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
-            e.printStackTrace();
+            LOGGER.fatal(e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

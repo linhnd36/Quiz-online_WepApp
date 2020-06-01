@@ -49,7 +49,6 @@ public class AdminController extends HttpServlet {
             session.setAttribute("SUBJECT", listSubject);
             url = ADMINPAGE;
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.fatal(e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

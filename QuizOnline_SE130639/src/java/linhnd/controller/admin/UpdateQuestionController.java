@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import linhnd.daos.QuestionDAO;
 import linhnd.dtos.Answer;
 import linhnd.dtos.Question;
@@ -99,7 +98,6 @@ public class UpdateQuestionController extends HttpServlet {
             }
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

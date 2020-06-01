@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -26,6 +24,8 @@ import linhnd.dtos.Subject;
  */
 public class QuestionDAO implements Serializable {
 
+    static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(QuestionDAO.class);
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("QuizOnline_SE130639PU");
 
     public void persist(Object object) {
@@ -35,7 +35,7 @@ public class QuestionDAO implements Serializable {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("persist : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -58,7 +58,7 @@ public class QuestionDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("newQuestion : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -75,7 +75,7 @@ public class QuestionDAO implements Serializable {
             question = (Question) query.setMaxResults(1).getSingleResult();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("getQuestionId : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -94,7 +94,7 @@ public class QuestionDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("updateCorrecAnswerForQuestion : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -114,7 +114,7 @@ public class QuestionDAO implements Serializable {
             countQuestion = (int) query.getResultList().size();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("countQuestionSearch : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -136,7 +136,7 @@ public class QuestionDAO implements Serializable {
             listQuestionSearch = query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("subListQuestionSearch : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -155,7 +155,7 @@ public class QuestionDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("deleteQuestion : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -171,7 +171,7 @@ public class QuestionDAO implements Serializable {
             question = em.find(Question.class, questionId);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("getQuestionById : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -193,7 +193,7 @@ public class QuestionDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("updateQuestion : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -218,14 +218,12 @@ public class QuestionDAO implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("getListQuestionRandom : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
         return listRandomQuestion;
     }
-
-
 
 }

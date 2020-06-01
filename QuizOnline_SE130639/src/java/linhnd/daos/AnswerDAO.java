@@ -7,8 +7,6 @@ package linhnd.daos;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,6 +20,7 @@ import linhnd.dtos.Question;
  */
 public class AnswerDAO implements Serializable {
 
+    static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(Answer.class);
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("QuizOnline_SE130639PU");
 
     public void persist(Object object) {
@@ -31,7 +30,7 @@ public class AnswerDAO implements Serializable {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" persist " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -59,7 +58,7 @@ public class AnswerDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" newAnswer : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -79,7 +78,7 @@ public class AnswerDAO implements Serializable {
             result = answer.getAnswerId();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" getAnswerId : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -95,7 +94,7 @@ public class AnswerDAO implements Serializable {
             answer = em.find(Answer.class, answerId);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" getAnswer : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();

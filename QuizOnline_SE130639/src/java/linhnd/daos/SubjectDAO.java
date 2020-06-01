@@ -8,8 +8,6 @@ package linhnd.daos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,6 +21,8 @@ import linhnd.dtos.Subject;
  */
 public class SubjectDAO implements Serializable {
 
+    static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(SubjectDAO.class);
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("QuizOnline_SE130639PU");
 
     public void persist(Object object) {
@@ -32,14 +32,14 @@ public class SubjectDAO implements Serializable {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" persist : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
     }
 
-    public List<Subject> getSubject() {
+    public List<Subject> getSubjectForTest() {
         List<Subject> listSubjectInvalid = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
         try {
@@ -57,12 +57,29 @@ public class SubjectDAO implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" getSubjectForTest : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
         return listSubjectInvalid;
+    }
+
+    public List<Subject> getSubject() {
+        List<Subject> listSubject = new ArrayList<>();
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT s FROM Subject s ");
+            listSubject = query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            LOGGER.fatal(" getSubject : " + e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return listSubject;
     }
 
     public Subject getSubjectById(String subjectId) {
@@ -73,7 +90,7 @@ public class SubjectDAO implements Serializable {
             subject = em.find(Subject.class, subjectId);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal(" getSubjectById : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();

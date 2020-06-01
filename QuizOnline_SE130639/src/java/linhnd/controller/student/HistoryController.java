@@ -48,7 +48,6 @@ public class HistoryController extends HttpServlet {
             url = SUCESS;
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

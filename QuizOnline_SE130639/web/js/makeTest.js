@@ -15,13 +15,23 @@ var updateTime = function () {
     timeDisplay.textContent = hour + ':' + minute + ':' + sec;
 };
 
+var removeTime = function () {
+    localStorage.removeItem("Time");
+}
+
 var quizStart = function () {
+    var x = localStorage.getItem("Time");
+    if (x !== null) {
+        timeRemaining = x;
+    }
     setInterval(function () {
         timeRemaining--;
+        localStorage.setItem("Time", timeRemaining);
         updateTime();
         if (timeRemaining < 0) {
             timeRemaining = 0;
             document.getElementById("btnSubmit").click();
+            removeTime();
         }
     }, 1000);
 };

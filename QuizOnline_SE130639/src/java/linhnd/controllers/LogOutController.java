@@ -6,7 +6,6 @@
 package linhnd.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,8 +44,7 @@ public class LogOutController extends HttpServlet {
             session.invalidate();
             url = SUCESS;
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
-            e.printStackTrace();
+            LOGGER.fatal(e);
         } finally {
             response.sendRedirect(url);
         }

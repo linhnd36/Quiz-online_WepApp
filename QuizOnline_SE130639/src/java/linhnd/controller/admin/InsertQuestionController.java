@@ -92,6 +92,7 @@ public class InsertQuestionController extends HttpServlet {
                                 //update correct answer of the question
                                 if (dao.updateCorrecAnswerForQuestion(question.getQuestionId(), String.valueOf(correctAnswerId))) {
                                     request.setAttribute("INPUTSUCCESS", "Input Successfull !");
+                                    request.setAttribute("SUBJECT", subjectId);
                                 } else {
                                     request.setAttribute("ERRORINPUT", "Inpust question Error !");
                                 }
@@ -105,7 +106,6 @@ public class InsertQuestionController extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("ERROR", "Inpust question Error !");
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

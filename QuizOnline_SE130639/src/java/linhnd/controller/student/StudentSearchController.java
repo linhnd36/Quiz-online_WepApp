@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import linhnd.daos.SubjectDAO;
 import linhnd.daos.TestDAO;
 import linhnd.dtos.Subject;
-import linhnd.dtos.Test;
 import org.apache.log4j.Logger;
 
 /**
@@ -60,7 +59,6 @@ public class StudentSearchController extends HttpServlet {
             
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

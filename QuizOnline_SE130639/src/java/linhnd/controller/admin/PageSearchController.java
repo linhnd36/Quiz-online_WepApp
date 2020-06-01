@@ -50,7 +50,6 @@ public class PageSearchController extends HttpServlet {
             url = SEARCH_PAGE;
         } catch (Exception e) {
             LOGGER.fatal(e);
-            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

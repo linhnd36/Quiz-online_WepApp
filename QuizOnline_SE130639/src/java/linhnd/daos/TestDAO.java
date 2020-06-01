@@ -8,8 +8,6 @@ package linhnd.daos;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -24,6 +22,8 @@ import linhnd.dtos.TestQuestions;
  */
 public class TestDAO implements Serializable {
 
+    static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(TestDAO.class);
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("QuizOnline_SE130639PU");
 
     public void persist(Object object) {
@@ -33,14 +33,14 @@ public class TestDAO implements Serializable {
             em.persist(object);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("persist : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
     }
 
-    public boolean newTest(String testTitle, float score, String email, List<TestQuestions> listTestQuestion) {
+    public boolean newTest(String testTitle, double score, String email, List<TestQuestions> listTestQuestion) {
         EntityManager em = emf.createEntityManager();
         boolean check = false;
         try {
@@ -60,7 +60,7 @@ public class TestDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("newTest : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -81,7 +81,7 @@ public class TestDAO implements Serializable {
             count = listTestSearch.size();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("countSearchTest : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -101,7 +101,7 @@ public class TestDAO implements Serializable {
             listTestSearch = query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("subPageSearchTest : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -117,7 +117,7 @@ public class TestDAO implements Serializable {
             test = em.find(Test.class, testId);
             em.getTransaction().commit();
         } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            LOGGER.fatal("getTestDetail : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();

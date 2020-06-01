@@ -44,11 +44,10 @@ public class StudentController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             SubjectDAO dao = new SubjectDAO();
-            List<Subject> listSubject = dao.getSubject();
+            List<Subject> listSubject = dao.getSubjectForTest();
             session.setAttribute("LISTSUBJECT", listSubject);
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
-            e.printStackTrace();
+            LOGGER.fatal(e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
