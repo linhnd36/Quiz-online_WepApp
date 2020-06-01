@@ -76,36 +76,41 @@
 
                     <c:if test="${LIST_SUB_PAGE != null && LIST_SUB_PAGE != 'noQuestion'}">
                         <c:forEach var="question" items="${LIST_SUB_PAGE}" varStatus="counter">
-                            <div class="col-sm-12 pt-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            ${(CURRENT_PAGE - 1)*20 + counter.count} .  ${question.questionContent}
-                                        </p>
-                                        <label>Answer:</label><br />
-                                        <c:forEach var="answers" items="${question.answerCollection}" varStatus="counter">
-                                            <div class="form-check ">
-                                                <label 
-                                                    <c:if test="${question.correctAnswerID == answers.answerId}"> style="color: red"</c:if>
-                                                    ><c:choose  >
-                                                        <c:when test="${counter.count == 1}">A.</c:when>
-                                                        <c:when test="${counter.count == 2}">B.</c:when>
-                                                        <c:when test="${counter.count == 3}">C.</c:when>
-                                                        <c:when test="${counter.count == 4}">D.</c:when>
-                                                    </c:choose> ${answers.answerContent}</label>
-                                            </div>
-                                        </c:forEach>
-                                        <input type="hidden" name="questionID" value="${question.questionId}"/>
-                                        <button type="submit" class="btn btn-success mt-3" name="action" value="btnDetail">
-                                            Update</button>
-                                            <c:if test="${STATUS_QUESTION == 'QuesActive'}" > 
-                                            <button type="submit" class="btn btn-danger mt-3" name="action" value="btnDelete">
-                                                Delete</button>
+                            <form action="MainController">
+                                <div class="col-sm-12 pt-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                ${(CURRENT_PAGE - 1)*20 + counter.count} .  ${question.questionContent}
+                                            </p>
+                                            <label>Answer:</label><br />
+                                            <c:forEach var="answers" items="${question.answerCollection}" varStatus="counter">
+                                                <div class="form-check ">
+                                                    <label 
+                                                        <c:if test="${question.correctAnswerID == answers.answerId}"> style="color: red"</c:if>
+                                                        ><c:choose  >
+                                                            <c:when test="${counter.count == 1}">A.</c:when>
+                                                            <c:when test="${counter.count == 2}">B.</c:when>
+                                                            <c:when test="${counter.count == 3}">C.</c:when>
+                                                            <c:when test="${counter.count == 4}">D.</c:when>
+                                                        </c:choose> ${answers.answerContent}</label>
+                                                </div>
+                                            </c:forEach>
+                                            <input type="hidden" name="questionID" value="${question.questionId}"/>
+                                            <button type="submit" class="btn btn-success mt-3" name="action" value="btnDetail">
+                                                Update</button>
+                                                <c:if test="${STATUS_QUESTION == 'QuesActive'}" > 
+                                                <button type="submit" class="btn btn-danger mt-3" name="action" value="btnDelete">
+                                                    Delete</button>
+                                                </c:if>
+                                                <c:if test="${STATUS_QUESTION != 'QuesActive'}" > 
+                                                <button type="submit" class="btn btn-info mt-3" name="action" value="btnRestore">Restore</button>
                                             </c:if>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </c:forEach>
                     </c:if>
                 </form>

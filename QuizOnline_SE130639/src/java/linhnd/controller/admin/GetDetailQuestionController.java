@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
 @WebServlet(name = "GetDetailQuestionController", urlPatterns = {"/GetDetailQuestionController"})
 public class GetDetailQuestionController extends HttpServlet {
 
-    static Logger LOGGER = Logger.getLogger(UpdateQuestionController.class);
+    static Logger LOGGER = Logger.getLogger(GetDetailQuestionController.class);
 
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "updateQuestion.jsp";

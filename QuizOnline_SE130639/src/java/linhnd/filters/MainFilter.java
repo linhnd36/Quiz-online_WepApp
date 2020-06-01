@@ -113,7 +113,6 @@ public class MainFilter implements Filter {
             Account account = null;
             String uri = req.getRequestURI();
             String url = LOGIN;
-            int count = -1;
             int lastIndex = uri.lastIndexOf("/");
 
             String resource = uri.substring(lastIndex + 1);
@@ -148,7 +147,9 @@ public class MainFilter implements Filter {
                 listAdmin.add("SearchQuestionController");
                 listAdmin.add("UpdateQuestionController");
 
-                account = (Account) session.getAttribute("ACCOUNT");
+                if (session != null) {
+                    account = (Account) session.getAttribute("ACCOUNT");
+                } 
                 for (String page : listAdmin) {
                     if (resource.equals(page)) {
                         if (account == null) {
@@ -175,9 +176,6 @@ public class MainFilter implements Filter {
                         }
                     }
                 }
-            }
-            if (count > -1) {
-                url = LOGIN;
             }
             if (url != null) {
                 req.getRequestDispatcher(url).forward(request, response);

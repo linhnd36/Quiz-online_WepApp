@@ -1,0 +1,14 @@
+FATAL   2020-06-01 23:56:47,560 [http-nio-8084-exec-11] linhnd.daos.AccountDAO  - checkLogin : javax.persistence.NoResultException: getSingleResult() did not retrieve any entities.
+FATAL   2020-06-01 23:56:47,567 [http-nio-8084-exec-11] linhnd.controllers.LoginController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:00:08,226 [http-nio-8084-exec-12] linhnd.daos.AccountDAO  - checkLogin : javax.persistence.NoResultException: getSingleResult() did not retrieve any entities.
+FATAL   2020-06-02 00:00:08,235 [http-nio-8084-exec-12] linhnd.controllers.LoginController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:00:16,057 [http-nio-8084-exec-23] linhnd.daos.AccountDAO  - checkLogin : javax.persistence.NoResultException: getSingleResult() did not retrieve any entities.
+FATAL   2020-06-02 00:00:16,060 [http-nio-8084-exec-23] linhnd.controllers.LoginController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:00:22,510 [http-nio-8084-exec-21] linhnd.daos.AccountDAO  - checkLogin : javax.persistence.NoResultException: getSingleResult() did not retrieve any entities.
+FATAL   2020-06-02 00:13:45,550 [http-nio-8080-exec-18] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-02 00:14:04,430 [http-nio-8080-exec-19] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-02 00:16:08,275 [http-nio-8080-exec-29] linhnd.controllers.LoginController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:40:59,902 [http-nio-8084-exec-35] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:43:27,517 [http-nio-8084-exec-39] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:49:36,479 [http-nio-8084-exec-40] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException
+FATAL   2020-06-02 00:52:24,096 [http-nio-8084-exec-49] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException

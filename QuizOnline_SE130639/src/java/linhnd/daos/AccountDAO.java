@@ -36,7 +36,7 @@ public class AccountDAO implements Serializable {
             role = acount.getRoleId().getRoleName();
             em.getTransaction().commit();
         } catch (Exception e) {
-            if (e.getMessage().equals("did not retrieve any entities")) {
+            if (e.getMessage().equals("getSingleResult() did not retrieve any entities.")) {
                 return role;
             } else {
                 LOGGER.fatal("checkLogin : " + e);
@@ -134,7 +134,7 @@ public class AccountDAO implements Serializable {
             em.getTransaction().commit();
             check = true;
         } catch (Exception e) {
-             LOGGER.fatal("createNewAccount : " + e);
+            LOGGER.fatal("createNewAccount : " + e);
             em.getTransaction().rollback();
         } finally {
             em.close();

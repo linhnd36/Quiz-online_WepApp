@@ -162,6 +162,24 @@ public class QuestionDAO implements Serializable {
         }
         return check;
     }
+    public boolean restoreQuestion(int questionId) {
+        EntityManager em = emf.createEntityManager();
+        boolean check = false;
+        try {
+            em.getTransaction().begin();
+            Question question = em.find(Question.class, questionId);
+            question.setStatusId(em.find(Status.class, "QuesActive"));
+            em.merge(question);
+            em.getTransaction().commit();
+            check = true;
+        } catch (Exception e) {
+            LOGGER.fatal("restoreQuestion : " + e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return check;
+    }
 
     public Question getQuestionById(int questionId) {
         EntityManager em = emf.createEntityManager();

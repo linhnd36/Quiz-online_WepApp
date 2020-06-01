@@ -6,25 +6,26 @@
 package linhnd.controller.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import static linhnd.controller.admin.DeleteQuestionController.LOGGER;
 import linhnd.daos.QuestionDAO;
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author PC
+ * @author Duc Linh
  */
-@WebServlet(name = "DeleteQuestionController", urlPatterns = {"/DeleteQuestionController"})
-public class DeleteQuestionController extends HttpServlet {
+@WebServlet(name = "RestoreQuestionController", urlPatterns = {"/RestoreQuestionController"})
+public class RestoreQuestionController extends HttpServlet {
 
-    static Logger LOGGER = Logger.getLogger(DeleteQuestionController.class);
+    static Logger LOGGER = Logger.getLogger(RestoreQuestionController.class);
     private static final String ERROR = "error.jsp";
-
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +46,7 @@ public class DeleteQuestionController extends HttpServlet {
 
             int questionIdInt = Integer.parseInt(questionId);
             QuestionDAO dao = new QuestionDAO();
-            if (dao.deleteQuestion(questionIdInt)) {
+            if (dao.restoreQuestion(questionIdInt)) {
                 url = "SearchQuestionController?txtSearchQuestion=" + session.getAttribute("SEARCH_VALUE") + "&subjectId=" + session.getAttribute("SUBJECT_VALUE") + "&statusQuestion=" + session.getAttribute("STATUS_QUESTION");
             }
         } catch (Exception e) {

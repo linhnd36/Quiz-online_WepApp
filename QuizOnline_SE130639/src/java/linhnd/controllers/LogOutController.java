@@ -24,7 +24,7 @@ public class LogOutController extends HttpServlet {
     static Logger LOGGER = Logger.getLogger(LogOutController.class);
 
     private final static String ERROR = "error.jsp";
-    private final static String SUCESS = "";
+    private final static String SUCESS = "login.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
