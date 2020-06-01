@@ -86,19 +86,32 @@ public class AccountDAO implements Serializable {
         return name;
     }
 
-    public boolean checkEmailAvailability(String email) {
-        boolean check = false;
+    public Account getAccount(String email) {
+        Account account = null;
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.find(Account.class, email);
+            account = em.find(Account.class, email);
             em.getTransaction().commit();
         } catch (Exception e) {
-            if (e.getMessage().equals("did not retrieve any entities")) {
-                check = true;
-            } else {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function checkEmailAvailability", e.getMessage());
-            }
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function getName", e.getMessage());
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return account;
+    }
+
+    public boolean checkEmailAvailability(String email) {
+        boolean check = true;
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Account a = em.find(Account.class, email);
+            a.getEmail();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            check = false;
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -122,6 +135,25 @@ public class AccountDAO implements Serializable {
             check = true;
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function createNewAccount", e.getMessage());
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return check;
+    }
+
+    public boolean updateStatus(String email) {
+        boolean check = false;
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Account account = em.find(Account.class, email);
+            account.setStatusId(em.find(Status.class, "Activated"));
+            em.merge(account);
+            em.getTransaction().commit();
+            check = true;
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception in function getName", e.getMessage());
             em.getTransaction().rollback();
         } finally {
             em.close();

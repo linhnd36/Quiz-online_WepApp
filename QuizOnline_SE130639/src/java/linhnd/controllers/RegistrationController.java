@@ -48,7 +48,6 @@ public class RegistrationController extends HttpServlet {
             String name = request.getParameter("txtName");
             String password = request.getParameter("txtPassword");
             String passwordConfirm = request.getParameter("txtConfirmPassword");
-
             AccountCrearteError error = new AccountCrearteError();
             AccountDAO dao = new AccountDAO();
 

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,6 +20,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import linhnd.dtos.Account;
 import org.apache.log4j.Logger;
 
 /**
@@ -29,7 +32,6 @@ public class MainFilter implements Filter {
     private static final boolean debug = true;
     static Logger LOGGER = Logger.getLogger(MainFilter.class);
     private final String LOGIN = "login.jsp";
-    private final String HOME = "StudentController";
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
@@ -106,18 +108,84 @@ public class MainFilter implements Filter {
             throws IOException, ServletException {
         try {
             HttpServletRequest req = (HttpServletRequest) request;
-            HttpServletResponse res = (HttpServletResponse) response;
+            HttpServletResponse rep = (HttpServletResponse) response;
             HttpSession session = req.getSession(false);
-            String email = null;
-            if (session != null) {
-                email = (String) session.getAttribute("EMAIL");
+            Account account = null;
+            String uri = req.getRequestURI();
+            String url = LOGIN;
+            int count = -1;
+            int lastIndex = uri.lastIndexOf("/");
+
+            String resource = uri.substring(lastIndex + 1);
+
+            if (resource.length() > 0) {
+                url = resource;
+                List<String> listStudent = new ArrayList<>();
+                listStudent.add("historyStudent.jsp");
+                listStudent.add("showDetailTest.jsp");
+                listStudent.add("student.jsp");
+                listStudent.add("studentTest.jsp");
+                listStudent.add("testDetail.jsp");
+                listStudent.add("FinishTestController");
+                listStudent.add("GetDetailTestController");
+                listStudent.add("HistoryController");
+                listStudent.add("LoadPageDetailTestController");
+                listStudent.add("LoadPageHistoryController");
+                listStudent.add("MakeTestController");
+                listStudent.add("StudentController");
+                listStudent.add("StudentSearchController");
+
+                List<String> listAdmin = new ArrayList<>();
+                listAdmin.add("adminInsertPage.jsp");
+                listAdmin.add("adminSearchPage.jsp");
+                listAdmin.add("updateQuestion.jsp");
+                listAdmin.add("AdminController");
+                listAdmin.add("DeleteQuestionController");
+                listAdmin.add("GetDetailQuestionController");
+                listAdmin.add("InsertQuestionController");
+                listAdmin.add("LoadPageSearchController");
+                listAdmin.add("PageSearchController");
+                listAdmin.add("SearchQuestionController");
+                listAdmin.add("UpdateQuestionController");
+
+                account = (Account) session.getAttribute("ACCOUNT");
+                for (String page : listAdmin) {
+                    if (resource.equals(page)) {
+                        if (account == null) {
+                            url = LOGIN;
+                            req.setAttribute("PERMISSION_STATUS", "Pls Login");
+                        } else {
+                            if (!account.getRoleId().getRoleId().equals("ADMIN")) {
+                                url = LOGIN;
+                                req.setAttribute("PERMISSION_STATUS", "You are not Admin");
+                            }
+                        }
+                    }
+                }
+                for (String page : listStudent) {
+                    if (resource.equals(page)) {
+                        if (account == null) {
+                            url = LOGIN;
+                            req.setAttribute("PERMISSION_STATUS", "Pls Login");
+                        } else {
+                            if (!account.getRoleId().getRoleId().equals("STUDENT")) {
+                                url = LOGIN;
+                                req.setAttribute("PERMISSION_STATUS", "You are not Student");
+                            }
+                        }
+                    }
+                }
             }
-            if (email != null) {
-                chain.doFilter(request, response);
+            if (count > -1) {
+                url = LOGIN;
+            }
+            if (url != null) {
+                req.getRequestDispatcher(url).forward(request, response);
             } else {
-                res.sendRedirect(LOGIN);
+                chain.doFilter(request, response);
             }
-        } catch (Throwable t) {
+
+        } catch (Exception t) {
             t.printStackTrace();
             LOGGER.fatal(t);
         }

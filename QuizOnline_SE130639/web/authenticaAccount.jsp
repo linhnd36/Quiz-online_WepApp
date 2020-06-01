@@ -1,7 +1,7 @@
 <%-- 
-    Document   : login
-    Created on : May 26, 2020, 12:58:22 PM
-    Author     : Duc Linh
+    Document   : authenticaAccount
+    Created on : Jun 1, 2020, 5:16:05 PM
+    Author     : PC
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,34 +18,18 @@
         <div class="container">
             <form action="MainController" method="POST" class="login-form">
                 <h1>Quiz Online</h1>
-                <h2>Login</h2>
-                <c:if test="${not empty PERMISSION_STATUS}" >
-                    <div class="alert alert-danger" role="alert">
-                        ${PERMISSION_STATUS}
-                    </div>
-                </c:if>
-                <c:set var="createAccount" value="${requestScope.CREATESUCESS}"/>
-                <c:if test="${not empty createAccount}">
-                    <div class="alert alert-success" role="alert">
-                        ${createAccount}
-                    </div>
-                </c:if>
+                <h2>Authentication Your Account :</h2>
+                <span>Check your mail to get Code !</span>
                 <div class="txtb">
-                    <h5>Email:</h5>
-                    <input type="email" name="txtEmail" value="" />
+                    <h5>Code: </h5>
+                    <input type="text" name="txtCode" value="" />
                 </div>
-                <div class="txtb">
-                    <h5>Password:</h5>
-                    <input type="password" name="txtPassword" value="" />
-                </div>
-                <c:set var="error" value="${requestScope.ERRORLOGIN}"/>
-                <c:if test="${not empty error}" >
+                <c:if test="${not empty ERROR_CODE}">
                     <div class="alert alert-danger" role="alert">
-                        ${error}
+                        ${ERROR_CODE}
                     </div>
                 </c:if>
-                <input type="submit" class="logbtn" value="Login" name="action" />
-                <div class="bottom-text">Don't have account? <a href="signUp.jsp">Sign up</a></div>
+                <input type="submit" class="logbtn" value="Anthentication" name="action" />
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

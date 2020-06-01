@@ -6,6 +6,7 @@
 package linhnd.controllers;
 
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import linhnd.daos.AccountDAO;
+import linhnd.dtos.Account;
+import linhnd.utils.JavaMailUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 
@@ -28,6 +31,9 @@ public class LoginController extends HttpServlet {
     private static final String ERROR = "login.jsp";
     private static final String STUDENT = "StudentController";
     private static final String ADMIN = "AdminController";
+    private static final String AUTHENTICATE_PAGE = "authenticaAccount.jsp";
+    private static final int MAX = 99999;
+    private static final int MIN = 10000;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,11 +64,17 @@ public class LoginController extends HttpServlet {
                 } else {
                     HttpSession session = request.getSession();
                     String name = dao.getName(email);
+                    Account acount = dao.getAccount(email);
                     session.setAttribute("NAME", name);
                     session.setAttribute("EMAIL", email);
+                    session.setAttribute("ACCOUNT", acount);
                     if (role.equals("Student")) {
                         if (statusAccount.equals("New")) {
-                            request.setAttribute("ERRORLOGIN", "Account not found !");
+                            int randomCode = ThreadLocalRandom.current().nextInt(MIN, MAX + 1);
+                            String randomCodeString = String.valueOf(randomCode);
+                            JavaMailUtil.sendMail(email, randomCodeString);
+                            session.setAttribute("RANDOM_CODE", randomCodeString);
+                            url = AUTHENTICATE_PAGE;
                         } else if (statusAccount.equals("Activated")) {
                             url = STUDENT;
                         }

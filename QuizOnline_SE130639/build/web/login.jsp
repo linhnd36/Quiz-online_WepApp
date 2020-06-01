@@ -19,6 +19,11 @@
             <form action="MainController" method="POST" class="login-form">
                 <h1>Quiz Online</h1>
                 <h2>Login</h2>
+                <c:if test="${not empty PERMISSION_STATUS}" >
+                    <div class="alert alert-danger" role="alert">
+                        ${PERMISSION_STATUS}
+                    </div>
+                </c:if>
                 <c:set var="createAccount" value="${requestScope.CREATESUCESS}"/>
                 <c:if test="${not empty createAccount}">
                     <div class="alert alert-success" role="alert">

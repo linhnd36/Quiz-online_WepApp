@@ -36,6 +36,7 @@ public class MainController extends HttpServlet {
     private static final String STUDENTCONTROLLER = "StudentController";
     private static final String STUDENTSEARCHCONTROLLER = "StudentSearchController";
     private static final String GETDETAILTEST = "GetDetailTestController";
+    private static final String AUTHENTICATION_CONTROLLER = "AuthenticateAccountController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -90,6 +91,9 @@ public class MainController extends HttpServlet {
             }
             if (action.equals("showDetailTest")) {
                 url = GETDETAILTEST;
+            }
+            if (action.equals("Anthentication")) {
+                url = AUTHENTICATION_CONTROLLER;
             } else {
                 request.setAttribute("ERROR", "Your action is invalid!");
             }

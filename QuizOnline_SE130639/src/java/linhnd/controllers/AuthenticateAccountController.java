@@ -6,26 +6,27 @@
 package linhnd.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import linhnd.daos.AccountDAO;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author PC
  */
-@WebServlet(name = "LogOutController", urlPatterns = {"/LogOutController"})
-public class LogOutController extends HttpServlet {
+@WebServlet(name = "AuthenticateAccountController", urlPatterns = {"/AuthenticateAccountController"})
+public class AuthenticateAccountController extends HttpServlet {
 
-    static Logger LOGGER = Logger.getLogger(LogOutController.class);
-
-    private final static String ERROR = "error.jsp";
-    private final static String SUCESS = "";
+    static Logger LOGGER = Logger.getLogger(AuthenticateAccountController.class);
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "StudentController";
+    private static final String ERROR_CODE = "authenticaAccount.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +35,7 @@ public class LogOutController extends HttpServlet {
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException if an I/O error occursF
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,13 +43,29 @@ public class LogOutController extends HttpServlet {
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
-            session.invalidate();
-            url = SUCESS;
+            String email = (String) session.getAttribute("EMAIL");
+            String codeRandom = (String) session.getAttribute("RANDOM_CODE");
+            String txtInputCode = request.getParameter("txtCode");
+            if (txtInputCode != null) {
+                if (codeRandom.equals(txtInputCode)) {
+                    AccountDAO dao = new AccountDAO();
+                    if (dao.updateStatus(email)) {
+                        url = SUCCESS;
+                    }
+                } else {
+                    url = ERROR_CODE;
+                    request.setAttribute("ERROR_CODE", "Incorrect authentication code");
+                }
+            } else {
+                url = ERROR_CODE;
+                request.setAttribute("ERROR_CODE", "Input code");
+            }
+
         } catch (Exception e) {
-            LOGGER.fatal(e.getMessage());
+            LOGGER.fatal(e);
             e.printStackTrace();
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

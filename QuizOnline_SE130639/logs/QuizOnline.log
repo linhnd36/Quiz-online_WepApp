@@ -47,3 +47,98 @@ FATAL   2020-05-31 22:37:12,388 [http-nio-8084-exec-136] linhnd.controller.admin
 FATAL   2020-05-31 22:37:23,534 [http-nio-8084-exec-138] linhnd.controller.admin.UpdateQuestionController  - java.lang.NumberFormatException: null
 FATAL   2020-05-31 22:37:33,196 [http-nio-8084-exec-134] linhnd.controller.admin.InsertQuestionController  - java.lang.NullPointerException
 FATAL   2020-05-31 22:38:53,710 [http-nio-8084-exec-130] linhnd.controller.admin.SearchQuestionController  - java.lang.NullPointerException
+FATAL   2020-06-01 14:47:24,497 [http-nio-8084-exec-11] linhnd.controllers.RegistrationController  - 
+Exception Description: No transaction is currently active
+FATAL   2020-06-01 14:48:26,182 [http-nio-8084-exec-17] linhnd.controllers.RegistrationController  - 
+Exception Description: No transaction is currently active
+FATAL   2020-06-01 14:52:48,648 [http-nio-8084-exec-19] linhnd.controllers.RegistrationController  - 
+Exception Description: No transaction is currently active
+FATAL   2020-06-01 15:38:33,401 [http-nio-8084-exec-168] linhnd.controller.student.FinishTestController  - java.lang.NullPointerException
+FATAL   2020-06-01 15:40:41,820 [http-nio-8084-exec-171] linhnd.controller.student.StudentSearchController  - java.lang.NullPointerException
+FATAL   2020-06-01 16:22:40,178 [http-nio-8084-exec-207] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-01 16:22:45,457 [http-nio-8084-exec-200] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-01 16:25:10,369 [http-nio-8084-exec-204] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-01 16:26:31,973 [http-nio-8084-exec-200] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-01 16:28:04,627 [http-nio-8084-exec-199] linhnd.filters.MainFilter  - java.lang.NullPointerException
+FATAL   2020-06-01 16:31:57,482 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,486 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,573 [http-nio-8084-exec-211] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,576 [http-nio-8084-exec-218] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,579 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,635 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,638 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,640 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,696 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,699 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,755 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,758 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,761 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,813 [http-nio-8084-exec-218] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,816 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,818 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,872 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,875 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,880 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,971 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:57,974 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,005 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,008 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,010 [http-nio-8084-exec-218] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,064 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,066 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,120 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,122 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,124 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,179 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,181 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,236 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,238 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,292 [http-nio-8084-exec-218] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,294 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,297 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,350 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,352 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:31:58,406 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,419 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,423 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,478 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,480 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,483 [http-nio-8084-exec-218] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,537 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,539 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,541 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,596 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,598 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,652 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,654 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,708 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,711 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,764 [http-nio-8084-exec-225] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,767 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,821 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,823 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,825 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:03,878 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:33,894 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:33,898 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:33,984 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:33,986 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:33,988 [http-nio-8084-exec-225] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,044 [http-nio-8084-exec-216] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,046 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,101 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,103 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,158 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,160 [http-nio-8084-exec-219] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,162 [http-nio-8084-exec-220] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,216 [http-nio-8084-exec-221] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,218 [http-nio-8084-exec-224] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,273 [http-nio-8084-exec-225] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,275 [http-nio-8084-exec-226] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,278 [http-nio-8084-exec-222] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,332 [http-nio-8084-exec-223] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,335 [http-nio-8084-exec-210] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 16:32:34,338 [http-nio-8084-exec-214] linhnd.filters.MainFilter  - java.lang.IllegalStateException: Cannot forward after response has been committed
+FATAL   2020-06-01 17:36:44,350 [http-nio-8084-exec-297] linhnd.controllers.AuthenticateAccountController  - java.lang.NullPointerException
+FATAL   2020-06-01 17:39:05,529 [http-nio-8084-exec-304] linhnd.controllers.AuthenticateAccountController  - java.lang.NullPointerException
+FATAL   2020-06-01 17:43:26,608 [http-nio-8084-exec-311] linhnd.controllers.AuthenticateAccountController  - java.lang.NullPointerException

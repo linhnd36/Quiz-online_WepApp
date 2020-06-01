@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package linhnd.util;
+package linhnd.utils;
 
 import java.util.Properties;
 import java.util.logging.Level;
@@ -14,7 +14,6 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -23,8 +22,7 @@ import javax.mail.internet.MimeMessage;
  * @author PC
  */
 public class JavaMailUtil {
-
-    public static void sendMail(String recepient) throws MessagingException {
+    public static void sendMail(String recepient,String code) throws MessagingException {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -39,17 +37,17 @@ public class JavaMailUtil {
                 return new PasswordAuthentication(myAccountMail, password);
             }
         });
-        Message message = prepareMessage(session, myAccountMail, recepient);
+        Message message = prepareMessage(session, myAccountMail, recepient, code);
         Transport.send(message);
     }
 
-    private static Message prepareMessage(Session session, String myAccountMail, String recepient) {
+    private static Message prepareMessage(Session session, String myAccountMail, String recepient,String code) {
         Message message = new MimeMessage(session);
         try {
             message.setFrom(new InternetAddress(myAccountMail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Test Mail");
-            message.setText("Hello World\n look at me ");
+            message.setSubject("Quiz Online Mail");
+            message.setText("Your Code : " +code);
             return message;
         } catch (Exception ex) {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);
