@@ -10,11 +10,11 @@ system is basically described as follows: there are many subjects in the system,
 number of questions and the time to take the quiz may vary. There is also question management for academic staff.
 Use Servlet as Controller and follow MVC2 model.
 # This system contains the following functions.
-  [x] - Registration	- Create	an	account	to	take	the	quiz.
-  [x] - Login- Used	to	authenticate	users	who	access	the	system	is	valid.
-  [x] - Search question.
-  [x] - Create Question.
-  [x] - Update Question.
-  [x] - Delete Question.
-  [x] - Take aquiz.
-  [x] - Show history
+  [x] - Registration	- Create	an	account	to	take	the	quiz.<br>
+  [x] - Login- Used	to	authenticate	users	who	access	the	system	is	valid.<br>
+  [x] - Search question.<br>
+  [x] - Create Question.<br>
+  [x] - Update Question.<br>
+  [x] - Delete Question.<br>
+  [x] - Take aquiz.<br>
+  [x] - Show history<br>
